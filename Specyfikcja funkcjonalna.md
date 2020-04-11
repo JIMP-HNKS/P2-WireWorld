@@ -2,7 +2,7 @@
 
 ## 1. Opis Ogólny
 
-### 3 1.1: Nazwa programu
+### 1.1: Nazwa programu
 **WireWorld Briana Silvermana**
 
 ### 1.2: Poruszany problem
