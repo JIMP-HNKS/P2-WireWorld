@@ -66,4 +66,4 @@ naciśnij program
 ## 5. Testowanie
 
 ### 5.1: Ogólny przebieg testowania
-Do przetestowania kodu użyję narzędzia JUnit, a GUI przetestuję ręcznie podczas tworzenia aplikacji.
+Do przetestowania kodu użyjemy narzędzia JUnit, a GUI przetestujemy ręcznie podczas tworzenia aplikacji.
