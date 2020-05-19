@@ -23,5 +23,7 @@ public class Main {
         sim.debugPrint();
         sim.generateNext();
         sim.debugPrint();
+
+        WireWorldFrame frame = new WireWorldFrame();
     }
 }
