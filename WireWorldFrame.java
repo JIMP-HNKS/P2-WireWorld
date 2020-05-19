@@ -12,8 +12,7 @@ class WireWorldFrame extends JFrame {
     public WireWorldFrame() {
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(1000, 1000);
-        setLocation(350, 350);
+        setPreferredSize(new Dimension(500, 500));
         setVisible(true);
         setBackground(Color.BLACK);
 
@@ -117,6 +116,10 @@ public void drawButtons(){
  
 
 
+}
+
+public void setPreferredSize(Dimension preferredSize){
+    super.setPreferredSize(preferredSize);
 }
     
      
