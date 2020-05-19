@@ -28,38 +28,57 @@ public void drawButtons(){
     JPanel panel = new JPanel();
 
     JPanel pliki = new JPanel();
-    JLabel label = new JLabel("generacji");
-    JSpinner spinner = new JSpinner(new SpinnerNumberModel(100, 1, 500, 1));
-    spinner.setBounds(70, 70, 50, 50);
-    JButton symuluj = new JButton("Symuluj");
-    symuluj.setBackground(Color.MAGENTA);
-    symuluj.setOpaque(true);
-    JButton otwórz = new JButton("Otwórz...");
-    // JFileChooser otwórz = new
-    // JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
-    // otwórz.setDialogTitle("Otwórz...");
-    JButton zapisz = new JButton("Zapisz...");
-    // JFileChooser zapisz = new
-    // JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
-    // zapisz.setDialogTitle("Zapisz...");
+    JLabel gen = new JLabel("generacji");
+    JSpinner num_of_gen = new JSpinner(new SpinnerNumberModel(100, 1, 500, 1));
+    num_of_gen.setBounds(70, 70, 50, 50);
+    JButton simulate = new JButton("Symuluj");
+    simulate.setBackground(Color.MAGENTA);
+    simulate.setOpaque(true);
+    JButton open = new JButton("Otwórz...");
+  
+    JButton save = new JButton("Zapisz...");
+    
 
-    panel.add(symuluj, "East");
-    panel.add(spinner, "Center");
-    panel.add(label, "West");
-    pliki.add(otwórz);
-    pliki.add(zapisz);
+    panel.add(simulate, "East");
+    panel.add(num_of_gen, "Center");
+    panel.add(gen, "West");
+    pliki.add(open);
+    pliki.add(save);
 
     JPanel drawing = new JPanel();
-    JButton rysuj = new JButton("Rysuj");
-    JButton wymaż = new JButton("Wymaż");
-    JButton przewodnik = new JButton("Przewodnik");
-    JButton glowa = new JButton("Głowa");
-    JButton ogon = new JButton("Ogon");
-    przewodnik.setIcon(new ImageIcon("black_dot.png"));
-    glowa.setIcon(new ImageIcon("red_dot.png"));
-    ogon.setIcon(new ImageIcon("green_dot.png"));
+    JButton draw = new JButton("Rysuj");
+    JButton erase = new JButton("Wymaż");
+    JButton cabel = new JButton("Przewodnik");
+    JButton head = new JButton("Głowa");
+    JButton tail = new JButton("Ogon");
+    
+    cabel.setIcon(new ImageIcon("black_dot.png"));
+    head.setIcon(new ImageIcon("red_dot.png"));
+    tail.setIcon(new ImageIcon("green_dot.png"));
 
-    otwórz.addActionListener(new ActionListener() {
+    
+
+    drawing.add(draw);
+    drawing.add(erase);
+
+    drawing.add(new JSeparator(SwingConstants.VERTICAL));
+    drawing.add(new JSeparator(SwingConstants.VERTICAL));
+    drawing.add(new JSeparator(SwingConstants.VERTICAL));
+
+    drawing.add(cabel);
+    drawing.add(head);
+    drawing.add(tail);
+
+
+    
+    getContentPane().add(BorderLayout.WEST, panel);
+    getContentPane().add(BorderLayout.EAST, pliki);
+    getContentPane().add(BorderLayout.SOUTH, drawing);
+  
+ 
+
+
+    open.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
             JFileChooser chooser = new JFileChooser();
@@ -77,7 +96,7 @@ public void drawButtons(){
         }
     });
 
-    zapisz.addActionListener(new ActionListener() {
+    save.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
             JFileChooser chooser = new JFileChooser();
@@ -89,65 +108,62 @@ public void drawButtons(){
         }
     });
 
-    rysuj.addActionListener(new ActionListener() {
+    draw.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            rysuj.setEnabled(false);
-            wymaż.setEnabled(true);
+            draw.setEnabled(false);
+            erase.setEnabled(true);
         }
     });
 
-    wymaż.addActionListener(new ActionListener() {
+    erase.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            wymaż.setEnabled(false);
-            rysuj.setEnabled(true);
-            przewodnik.setEnabled(true);
-            glowa.setEnabled(true);
-            ogon.setEnabled(true);
+            erase.setEnabled(false);
+            draw.setEnabled(true);
+            cabel.setEnabled(true);
+            head.setEnabled(true);
+            tail.setEnabled(true);
         }
     });
 
-    przewodnik.addActionListener(new ActionListener() {
+    cabel.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            przewodnik.setEnabled(false);
-            glowa.setEnabled(true);
-            ogon.setEnabled(true);
+            if(erase.isEnabled() == true){
+                cabel.setEnabled(false);
+                head.setEnabled(true);
+                tail.setEnabled(true);
+            }
+            
         }
     });
 
-    glowa.addActionListener(new ActionListener() {
+    head.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            przewodnik.setEnabled(true);
-            glowa.setEnabled(false);
-            ogon.setEnabled(true);
+            if(erase.isEnabled() == true){
+                cabel.setEnabled(true);
+                head.setEnabled(false);
+                tail.setEnabled(true);
+            }
         }
     });
 
-    ogon.addActionListener(new ActionListener() {
+    tail.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            przewodnik.setEnabled(true);
-            glowa.setEnabled(true);
-            ogon.setEnabled(false);
+            if(erase.isEnabled() == true){
+                cabel.setEnabled(true);
+                head.setEnabled(true);
+                tail.setEnabled(false);
+            }
         }
     });
 
  
 
-    drawing.add(rysuj);
-    drawing.add(wymaż);
-    drawing.add(przewodnik);
-    drawing.add(glowa);
-    drawing.add(ogon);
-
-    
-    getContentPane().add(BorderLayout.WEST, panel);
-    getContentPane().add(BorderLayout.EAST, pliki);
-    getContentPane().add(BorderLayout.SOUTH, drawing);
- 
+   
 
 
 }
