@@ -11,6 +11,8 @@ class WireWorldFrame extends JFrame {
 
     public WireWorldFrame() {
 
+        super("WireWorld");
+
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setPreferredSize(new Dimension(500, 500));
         setVisible(true);
