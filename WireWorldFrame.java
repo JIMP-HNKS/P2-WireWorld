@@ -1,6 +1,6 @@
-import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.awt.*;
 
 import javax.swing.*;
@@ -14,7 +14,6 @@ class WireWorldFrame extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setPreferredSize(new Dimension(500, 500));
         setVisible(true);
-        setBackground(Color.BLACK);
 
         drawButtons();
         
@@ -33,6 +32,8 @@ public void drawButtons(){
     JSpinner spinner = new JSpinner(new SpinnerNumberModel(100, 1, 500, 1));
     spinner.setBounds(70, 70, 50, 50);
     JButton symuluj = new JButton("Symuluj");
+    symuluj.setBackground(Color.MAGENTA);
+    symuluj.setOpaque(true);
     JButton otwórz = new JButton("Otwórz...");
     // JFileChooser otwórz = new
     // JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
@@ -54,6 +55,39 @@ public void drawButtons(){
     JButton przewodnik = new JButton("Przewodnik");
     JButton glowa = new JButton("Głowa");
     JButton ogon = new JButton("Ogon");
+    przewodnik.setIcon(new ImageIcon("black_dot.png"));
+    glowa.setIcon(new ImageIcon("red_dot.png"));
+    ogon.setIcon(new ImageIcon("green_dot.png"));
+
+    otwórz.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            JFileChooser chooser = new JFileChooser();
+            int status = chooser.showOpenDialog(null);
+            if (status == JFileChooser.APPROVE_OPTION) {
+                File file = chooser.getSelectedFile();
+                ;
+                if (file == null) {
+                    return;
+                }
+
+                String fileName = chooser.getSelectedFile().getAbsolutePath();
+                System.out.println("Opening: " + fileName);
+            }
+        }
+    });
+
+    zapisz.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            JFileChooser chooser = new JFileChooser();
+            int userSelection = chooser.showSaveDialog(null);
+            if (userSelection == JFileChooser.APPROVE_OPTION) {
+                File fileToSave = chooser.getSelectedFile();
+                System.out.println("Save as file: " + fileToSave.getAbsolutePath());
+            }
+        }
+    });
 
     rysuj.addActionListener(new ActionListener() {
         @Override
