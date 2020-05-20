@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.paint.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.canvas.*?>
 <?import javafx.scene.effect.*?>
@@ -21,7 +22,7 @@
          <children>
             <ToolBar prefHeight="39.0" prefWidth="519.0">
               <items>
-                <Button id="simulate" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: #32CD32;" text="Symuluj" />
+                <Button id="simulate" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="27.0" prefWidth="83.0" style="-fx-background-color: #32CD32;" text="Symuluj" />
                   <TextField id="gen_num" prefHeight="27.0" prefWidth="63.0" promptText="100" />
                   <Label text="generacji" />
               </items>
@@ -47,17 +48,31 @@
          <children>
             <ToolBar prefHeight="39.0" prefWidth="168.0">
               <items>
-                  <ToggleButton id="draw" mnemonicParsing="false" selected="true" text="Rysuj">
+                  <ToggleButton id="draw" mnemonicParsing="false" prefHeight="30.0" prefWidth="83.0" selected="true" text="Rysuj">
                      <toggleGroup>
                         <ToggleGroup fx:id="choose" />
                      </toggleGroup>
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@draw.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                   </ToggleButton>
-                  <ToggleButton id="erase" mnemonicParsing="false" text="Wymaż" toggleGroup="$choose" />
+                  <ToggleButton id="erase" mnemonicParsing="false" prefHeight="30.0" prefWidth="83.0" text="Wymaż" toggleGroup="$choose">
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@erase.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></ToggleButton>
               </items>
             </ToolBar>
-            <ToolBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="39.0" prefWidth="351.0" GridPane.columnIndex="1">
+            <ToolBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="7.0" prefWidth="300.0" GridPane.columnIndex="1">
               <items>
-                  <ToggleButton id="tail" mnemonicParsing="false" text="Ogon">
+                  <ToggleButton id="tail" mnemonicParsing="false" prefHeight="30.0" text="Ogon">
                      <toggleGroup>
                         <ToggleGroup fx:id="draw" />
                      </toggleGroup>
@@ -69,7 +84,7 @@
                         </ImageView>
                      </graphic>
                   </ToggleButton>
-                  <ToggleButton id="head" mnemonicParsing="false" text="Głowa" toggleGroup="$draw">
+                  <ToggleButton id="head" mnemonicParsing="false" prefHeight="30.0" text="Głowa" toggleGroup="$draw">
                      <graphic>
                         <ImageView fitHeight="25.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -78,7 +93,7 @@
                         </ImageView>
                      </graphic>
                   </ToggleButton>
-                  <ToggleButton id="cable" mnemonicParsing="false" text="Przewodnik" toggleGroup="$draw">
+                  <ToggleButton id="cable" mnemonicParsing="false" prefHeight="30.0" prefWidth="99.0" text="Przewodnik" toggleGroup="$draw">
                      <graphic>
                         <ImageView fitHeight="25.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true">
                            <image>
