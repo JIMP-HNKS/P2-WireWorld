@@ -8,7 +8,6 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="397.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <top>
       <GridPane BorderPane.alignment="CENTER">
@@ -22,15 +21,15 @@
          <children>
             <ToolBar prefHeight="39.0" prefWidth="519.0">
               <items>
-                <Button contentDisplay="CENTER" defaultButton="true" mnemonicParsing="false" style="-fx-background-color: #32CD32;" text="Symuluj" />
-                  <TextField prefHeight="27.0" prefWidth="63.0" />
+                <Button id="simulate" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: #32CD32;" text="Symuluj" />
+                  <TextField id="gen_num" prefHeight="27.0" prefWidth="63.0" />
                   <Label text="generacji" />
               </items>
             </ToolBar>
             <ToolBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="39.0" prefWidth="309.0" GridPane.columnIndex="1">
               <items>
-                <Button mnemonicParsing="false" text="Zapisz..." />
-                  <Button mnemonicParsing="false" text="Otwórz..." />
+                <Button id="save" mnemonicParsing="false" text="Zapisz..." />
+                  <Button id="open" mnemonicParsing="false" text="Otwórz..." />
               </items>
             </ToolBar>
          </children>
@@ -39,54 +38,61 @@
    <bottom>
       <GridPane BorderPane.alignment="CENTER">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints fillWidth="false" halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="313.0" minWidth="10.0" prefWidth="300.0" />
+          <ColumnConstraints fillWidth="false" halignment="RIGHT" hgrow="SOMETIMES" maxWidth="376.0" minWidth="10.0" prefWidth="300.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <ToolBar prefHeight="40.0" prefWidth="200.0">
+            <ToolBar prefHeight="39.0" prefWidth="168.0">
               <items>
-                <Button mnemonicParsing="false" text="Rysuj" />
-                  <Button mnemonicParsing="false" text="Wymaż" />
+                  <ToggleButton id="draw" mnemonicParsing="false" selected="true" text="Rysuj">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="choose" />
+                     </toggleGroup>
+                  </ToggleButton>
+                  <ToggleButton id="erase" mnemonicParsing="false" text="Wymaż" toggleGroup="$choose" />
               </items>
             </ToolBar>
-            <ToolBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="39.0" prefWidth="309.0" GridPane.columnIndex="1">
+            <ToolBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="39.0" prefWidth="351.0" GridPane.columnIndex="1">
               <items>
-                <Button mnemonicParsing="false" text="Ogon">
+                  <ToggleButton id="tail" mnemonicParsing="false" text="Ogon">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="draw" />
+                     </toggleGroup>
                      <graphic>
-                        <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="25.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@green_dot.png" />
                            </image>
                         </ImageView>
                      </graphic>
-                  </Button>
-                  <Button mnemonicParsing="false" text="Głowa">
+                  </ToggleButton>
+                  <ToggleButton id="head" mnemonicParsing="false" text="Głowa" toggleGroup="$draw">
                      <graphic>
-                        <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="25.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@red_dot.png" />
                            </image>
                         </ImageView>
                      </graphic>
-                  </Button>
-                  <Button mnemonicParsing="false" text="Przewodnik">
+                  </ToggleButton>
+                  <ToggleButton id="cable" mnemonicParsing="false" text="Przewodnik" toggleGroup="$draw">
                      <graphic>
-                        <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="25.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@black_dot.png" />
                            </image>
                         </ImageView>
                      </graphic>
-                  </Button>
+                  </ToggleButton>
               </items>
             </ToolBar>
          </children>
       </GridPane>
    </bottom>
    <center>
-      <Canvas height="315.0" width="595.0" BorderPane.alignment="CENTER" />
+      <Canvas height="315.0" width="583.0" BorderPane.alignment="CENTER" />
    </center>
 </BorderPane>
