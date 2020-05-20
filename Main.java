@@ -1,4 +1,4 @@
-public class Main {
+public class Main{
     public static void main(String[] args) {
         WireWorldSimulation sim = new WireWorldSimulation(7, 7);
 
@@ -24,6 +24,9 @@ public class Main {
         sim.generateNext();
         sim.debugPrint();
 
-        WireWorldFrame frame = new WireWorldFrame();
+        App app = new App();
+        app.launch(args);
+
+       
     }
 }

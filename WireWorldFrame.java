@@ -8,7 +8,7 @@ import javax.swing.*;
 
 class WireWorldFrame extends JFrame {
     private WireWorldState state;
-
+/*
     public WireWorldFrame() {
 
         super("WireWorld");
@@ -173,6 +173,6 @@ public void drawButtons(){
 public void setPreferredSize(Dimension preferredSize){
     super.setPreferredSize(preferredSize);
 }
-    
+    */
      
 }
