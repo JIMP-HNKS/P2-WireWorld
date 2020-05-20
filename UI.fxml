@@ -22,7 +22,7 @@
             <ToolBar prefHeight="39.0" prefWidth="519.0">
               <items>
                 <Button id="simulate" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: #32CD32;" text="Symuluj" />
-                  <TextField id="gen_num" prefHeight="27.0" prefWidth="63.0" />
+                  <TextField id="gen_num" prefHeight="27.0" prefWidth="63.0" promptText="100" />
                   <Label text="generacji" />
               </items>
             </ToolBar>
