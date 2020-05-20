@@ -13,24 +13,32 @@ public class WireWorldFrame extends JFrame {
     public WireWorldFrame() {
         super("WireWorld");
 
+        state = new WireWorldState(
+                new WireWorldSimulation(80, 50),
+                100
+        );
+
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setPreferredSize(new Dimension(500, 500));
         setVisible(true);
+        setResizable(false);
 
-        drawButtons();
+        createUI();
 
         pack();
     }
 
-    public void drawButtons(){
+    public void createUI(){
         JPanel panel = new JPanel();
 
         JPanel pliki = new JPanel();
         JLabel gen = new JLabel("generacji");
-        JSpinner num_of_gen = new JSpinner(new SpinnerNumberModel(100, 1, 500, 1));
+        JSpinner num_of_gen = new JSpinner(
+                new SpinnerNumberModel(state.getSimCount(), 1, 500, 1)
+        );
         num_of_gen.setBounds(70, 70, 50, 50);
         JButton simulate = new JButton("Symuluj");
-        simulate.setBackground(Color.MAGENTA);
+        // simulate.setBackground(Color.MAGENTA);
         simulate.setOpaque(true);
         JButton open = new JButton("Otwórz...");
 
@@ -153,7 +161,7 @@ public class WireWorldFrame extends JFrame {
         });
     }
 
-    public void setPreferredSize(Dimension preferredSize){
+    public void setPreferredSize(Dimension preferredSize) {
         super.setPreferredSize(preferredSize);
     }
 }
