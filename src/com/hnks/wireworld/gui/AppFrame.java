@@ -22,7 +22,7 @@ public class AppFrame extends JFrame {
 
         setLayout(new BorderLayout());
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setPreferredSize(new Dimension(800, 800));
+        setPreferredSize(new Dimension(640, 600));
         setVisible(true);
         setResizable(false);
 
@@ -53,8 +53,22 @@ public class AppFrame extends JFrame {
         panel.add(simulate, "East");
         panel.add(num_of_gen, "Center");
         panel.add(gen, "West");
-        pliki.add(open);
-        pliki.add(save);
+
+        panel.add(new JSeparator(SwingConstants.VERTICAL));
+        panel.add(new JSeparator(SwingConstants.VERTICAL));
+        panel.add(new JSeparator(SwingConstants.VERTICAL));
+        panel.add(new JSeparator(SwingConstants.VERTICAL));
+        panel.add(new JSeparator(SwingConstants.VERTICAL));
+        panel.add(new JSeparator(SwingConstants.VERTICAL));
+        panel.add(new JSeparator(SwingConstants.VERTICAL));
+        panel.add(new JSeparator(SwingConstants.VERTICAL));
+        panel.add(new JSeparator(SwingConstants.VERTICAL));
+        panel.add(new JSeparator(SwingConstants.VERTICAL));
+
+
+
+        panel.add(open);
+        panel.add(save);
 
         JPanel drawing = new JPanel();
         JButton draw = new JButton("Rysuj");
@@ -78,10 +92,9 @@ public class AppFrame extends JFrame {
         drawing.add(head);
         drawing.add(tail);
 
-        add(BorderLayout.WEST, panel);
-        add(BorderLayout.EAST, pliki);
+        add(BorderLayout.NORTH, panel);
+        //add(BorderLayout.EAST, pliki);
         add(BorderLayout.SOUTH, drawing);
-
         add(BorderLayout.CENTER, drawingPanel);
 
         open.addActionListener(new ActionListener() {
