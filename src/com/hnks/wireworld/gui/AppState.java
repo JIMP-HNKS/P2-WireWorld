@@ -24,6 +24,10 @@ public class AppState {
         this.simCount = simCount;
     }
 
+    public AutomatonSimulation getSim(){
+        return sim;
+    }
+
     public void generateNext() {
         sim.generateNext(rule);
     }

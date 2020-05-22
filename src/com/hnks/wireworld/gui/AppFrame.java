@@ -21,7 +21,7 @@ public class AppFrame extends JFrame {
         );
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setPreferredSize(new Dimension(500, 500));
+        setPreferredSize(new Dimension(800, 800));
         setVisible(true);
         setResizable(false);
 
@@ -32,6 +32,8 @@ public class AppFrame extends JFrame {
 
     public void createUI(){
         JPanel panel = new JPanel();
+
+        DrawingPanel drawingPanel = new DrawingPanel(state);
 
         JPanel pliki = new JPanel();
         JLabel gen = new JLabel("generacji");
@@ -78,6 +80,7 @@ public class AppFrame extends JFrame {
         getContentPane().add(BorderLayout.WEST, panel);
         getContentPane().add(BorderLayout.EAST, pliki);
         getContentPane().add(BorderLayout.SOUTH, drawing);
+        getContentPane().add(BorderLayout.CENTER, drawingPanel);
 
         open.addActionListener(new ActionListener() {
             @Override
