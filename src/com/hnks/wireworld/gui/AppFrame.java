@@ -22,7 +22,7 @@ public class AppFrame extends JFrame {
 
         setLayout(new BorderLayout());
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setPreferredSize(new Dimension(640, 600));
+        setPreferredSize(new Dimension(640, 500));
         setVisible(true);
         setResizable(false);
 
@@ -93,7 +93,6 @@ public class AppFrame extends JFrame {
         drawing.add(tail);
 
         add(BorderLayout.NORTH, panel);
-        //add(BorderLayout.EAST, pliki);
         add(BorderLayout.SOUTH, drawing);
         add(BorderLayout.CENTER, drawingPanel);
 
@@ -143,6 +142,7 @@ public class AppFrame extends JFrame {
                 cable.setEnabled(true);
                 head.setEnabled(true);
                 tail.setEnabled(true);
+                drawingPanel.option = DrawingOption.ERASE;
             }
         });
 
@@ -150,9 +150,11 @@ public class AppFrame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(erase.isEnabled()){
+                    draw.setEnabled(false);
                     cable.setEnabled(false);
                     head.setEnabled(true);
                     tail.setEnabled(true);
+                    drawingPanel.option = DrawingOption.CABLE;
                 }
 
             }
@@ -162,9 +164,11 @@ public class AppFrame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(erase.isEnabled()){
+                    draw.setEnabled(false);
                     cable.setEnabled(true);
                     head.setEnabled(false);
                     tail.setEnabled(true);
+                    drawingPanel.option = DrawingOption.HEAD;
                 }
             }
         });
@@ -173,9 +177,11 @@ public class AppFrame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(erase.isEnabled()){
+                    draw.setEnabled(false);
                     cable.setEnabled(true);
                     head.setEnabled(true);
                     tail.setEnabled(false);
+                    drawingPanel.option = DrawingOption.TAIL;
                 }
             }
         });
