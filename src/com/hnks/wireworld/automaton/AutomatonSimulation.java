@@ -1,28 +1,28 @@
-package com.hnks.wireworld;
+package com.hnks.wireworld.automaton;
 
 import com.hnks.wireworld.rules.IAutomatonRule;
 
 import java.io.IOException;
 
-public class WireWorldSimulation {
+public class AutomatonSimulation {
     private final int width;
     private final int height;
-    private WireWorldCell[][] cells;
+    private AutomatonCell[][] cells;
 
-    public WireWorldSimulation(int width, int height) {
+    public AutomatonSimulation(int width, int height) {
         this.width = width;
         this.height = height;
 
-        this.cells = new WireWorldCell[width][height];
+        this.cells = new AutomatonCell[width][height];
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
-                cells[x][y] = WireWorldCell.BLANK;
+                cells[x][y] = AutomatonCell.BLANK;
             }
         }
 
     }
 
-    public WireWorldCell getCell(int x, int y) {
+    public AutomatonCell getCell(int x, int y) {
         if (x >= width) x = x % width;
         if (y >= height) y = y % height;
         if (x < 0) x += width;
@@ -31,7 +31,7 @@ public class WireWorldSimulation {
         return cells[x][y];
     }
 
-    public void setCell(WireWorldCell cell, int x, int y) {
+    public void setCell(AutomatonCell cell, int x, int y) {
         cells[x][y] = cell;
     }
 
@@ -41,40 +41,40 @@ public class WireWorldSimulation {
         for (int dx = -1; dx <= 1; dx++) {
             for (int dy = -1; dy <= 1; dy++) {
                 if (dx == 0 && dy == 0) continue;
-                WireWorldCell cell = getCell(x + dx, y + dy);
+                AutomatonCell cell = getCell(x + dx, y + dy);
 
-                if (cell == WireWorldCell.HEAD) count++;
+                if (cell == AutomatonCell.HEAD) count++;
             }
         }
 
         return count;
     }
 
-    public static WireWorldSimulation loadFromFile(String path) throws IOException {
+    public static AutomatonSimulation loadFromFile(String path) throws IOException {
         // sad
         return null;
     }
 
-    public void evolveCell(int x, int y, WireWorldCell[][] target) {
-        WireWorldCell cell = getCell(x, y);
-        WireWorldCell targetCell = WireWorldCell.BLANK;
+    public void evolveCell(int x, int y, AutomatonCell[][] target) {
+        AutomatonCell cell = getCell(x, y);
+        AutomatonCell targetCell = AutomatonCell.BLANK;
 
         switch (cell) {
             case BLANK:
                 break;
             case TAIL:
-                targetCell = WireWorldCell.CABLE;
+                targetCell = AutomatonCell.CABLE;
                 break;
             case HEAD:
-                targetCell = WireWorldCell.TAIL;
+                targetCell = AutomatonCell.TAIL;
                 break;
             default:
                 int heads = countHeads(x, y);
 
                 if (heads == 1 || heads == 2)
-                    targetCell = WireWorldCell.HEAD;
+                    targetCell = AutomatonCell.HEAD;
                 else
-                    targetCell = WireWorldCell.CABLE;
+                    targetCell = AutomatonCell.CABLE;
 
                 break;
         }
@@ -83,7 +83,7 @@ public class WireWorldSimulation {
     }
 
     public void generateNext(IAutomatonRule rule) {
-        WireWorldCell[][] target = new WireWorldCell[width][height];
+        AutomatonCell[][] target = new AutomatonCell[width][height];
 
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {

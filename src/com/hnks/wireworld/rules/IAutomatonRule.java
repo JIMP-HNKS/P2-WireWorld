@@ -1,10 +1,10 @@
 package com.hnks.wireworld.rules;
 
-import com.hnks.wireworld.WireWorldCell;
-import com.hnks.wireworld.WireWorldSimulation;
+import com.hnks.wireworld.automaton.AutomatonCell;
+import com.hnks.wireworld.automaton.AutomatonSimulation;
 
 public interface IAutomatonRule {
     String getName();
     String getID();
-    void evolve(WireWorldSimulation sim, int x, int y, WireWorldCell[][] target);
+    void evolve(AutomatonSimulation sim, int x, int y, AutomatonCell[][] target);
 }

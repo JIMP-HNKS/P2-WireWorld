@@ -1,21 +1,23 @@
 package com.hnks.wireworld;
 
+import com.hnks.wireworld.automaton.AutomatonCell;
+import com.hnks.wireworld.automaton.AutomatonSimulation;
 import com.hnks.wireworld.rules.IAutomatonRule;
 import com.hnks.wireworld.rules.WireWorldRule;
 
 public class WireWorldState {
-    private WireWorldSimulation sim;
+    private AutomatonSimulation sim;
 
     private boolean running;
     private int simCount;
 
     private boolean drawMode = true;
-    private WireWorldCell drawCell = WireWorldCell.CABLE;
+    private AutomatonCell drawCell = AutomatonCell.CABLE;
 
     private IAutomatonRule rule = new WireWorldRule();
 
     public WireWorldState(
-            WireWorldSimulation sim,
+            AutomatonSimulation sim,
             int simCount
     ) {
         this.sim = sim;
@@ -42,11 +44,11 @@ public class WireWorldState {
         this.drawMode = drawMode;
     }
 
-    public WireWorldCell getDrawCell() {
+    public AutomatonCell getDrawCell() {
         return drawCell;
     }
 
-    public void setDrawCell(WireWorldCell drawCell) {
+    public void setDrawCell(AutomatonCell drawCell) {
         this.drawCell = drawCell;
     }
 

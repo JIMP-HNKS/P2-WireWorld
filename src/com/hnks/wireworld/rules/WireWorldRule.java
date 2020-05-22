@@ -1,7 +1,7 @@
 package com.hnks.wireworld.rules;
 
-import com.hnks.wireworld.WireWorldCell;
-import com.hnks.wireworld.WireWorldSimulation;
+import com.hnks.wireworld.automaton.AutomatonCell;
+import com.hnks.wireworld.automaton.AutomatonSimulation;
 
 public class WireWorldRule implements IAutomatonRule {
     @Override
@@ -15,26 +15,26 @@ public class WireWorldRule implements IAutomatonRule {
     }
 
     @Override
-    public void evolve(WireWorldSimulation sim, int x, int y, WireWorldCell[][] target) {
-        WireWorldCell cell = sim.getCell(x, y);
-        WireWorldCell targetCell = WireWorldCell.BLANK;
+    public void evolve(AutomatonSimulation sim, int x, int y, AutomatonCell[][] target) {
+        AutomatonCell cell = sim.getCell(x, y);
+        AutomatonCell targetCell = AutomatonCell.BLANK;
 
         switch (cell) {
             case BLANK:
                 break;
             case TAIL:
-                targetCell = WireWorldCell.CABLE;
+                targetCell = AutomatonCell.CABLE;
                 break;
             case HEAD:
-                targetCell = WireWorldCell.TAIL;
+                targetCell = AutomatonCell.TAIL;
                 break;
             default:
                 int heads = sim.countHeads(x, y);
 
                 if (heads == 1 || heads == 2)
-                    targetCell = WireWorldCell.HEAD;
+                    targetCell = AutomatonCell.HEAD;
                 else
-                    targetCell = WireWorldCell.CABLE;
+                    targetCell = AutomatonCell.CABLE;
 
                 break;
         }

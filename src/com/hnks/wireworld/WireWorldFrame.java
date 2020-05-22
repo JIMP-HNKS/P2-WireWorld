@@ -1,5 +1,7 @@
 package com.hnks.wireworld;
 
+import com.hnks.wireworld.automaton.AutomatonSimulation;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -14,7 +16,7 @@ public class WireWorldFrame extends JFrame {
         super("WireWorld");
 
         state = new WireWorldState(
-                new WireWorldSimulation(80, 50),
+                new AutomatonSimulation(80, 50),
                 100
         );
 
