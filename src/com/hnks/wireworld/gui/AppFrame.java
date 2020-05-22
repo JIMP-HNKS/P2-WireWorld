@@ -20,6 +20,7 @@ public class AppFrame extends JFrame {
                 100
         );
 
+        setLayout(new BorderLayout());
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setPreferredSize(new Dimension(800, 800));
         setVisible(true);
@@ -77,10 +78,11 @@ public class AppFrame extends JFrame {
         drawing.add(head);
         drawing.add(tail);
 
-        getContentPane().add(BorderLayout.WEST, panel);
-        getContentPane().add(BorderLayout.EAST, pliki);
-        getContentPane().add(BorderLayout.SOUTH, drawing);
-        getContentPane().add(BorderLayout.CENTER, drawingPanel);
+        add(BorderLayout.WEST, panel);
+        add(BorderLayout.EAST, pliki);
+        add(BorderLayout.SOUTH, drawing);
+
+        add(BorderLayout.CENTER, drawingPanel);
 
         open.addActionListener(new ActionListener() {
             @Override

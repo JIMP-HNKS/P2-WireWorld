@@ -18,6 +18,8 @@ public class DrawingPanel extends JPanel {
     public DrawingPanel(AppState state){
         this.setPreferredSize(new Dimension(640, 400));
         this.addMouseListener(mouseHandler);
+
+        this.state = state;
     }
 
     protected void paintComponent(Graphics g) {
