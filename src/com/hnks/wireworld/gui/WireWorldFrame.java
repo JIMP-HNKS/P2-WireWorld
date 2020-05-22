@@ -1,4 +1,4 @@
-package com.hnks.wireworld;
+package com.hnks.wireworld.gui;
 
 import com.hnks.wireworld.automaton.AutomatonSimulation;
 
@@ -60,9 +60,9 @@ public class WireWorldFrame extends JFrame {
         JButton head = new JButton("Głowa");
         JButton tail = new JButton("Ogon");
 
-        cabel.setIcon(new ImageIcon("black_dot.png"));
-        head.setIcon(new ImageIcon("red_dot.png"));
-        tail.setIcon(new ImageIcon("green_dot.png"));
+        cabel.setIcon(new ImageIcon(getClass().getResource("black_dot.png")));
+        head.setIcon(new ImageIcon(getClass().getResource("red_dot.png")));
+        tail.setIcon(new ImageIcon(getClass().getResource("green_dot.png")));
 
         drawing.add(draw);
         drawing.add(erase);

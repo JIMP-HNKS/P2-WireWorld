@@ -1,4 +1,4 @@
-package com.hnks.wireworld;
+package com.hnks.wireworld.gui;
 
 import com.hnks.wireworld.automaton.AutomatonCell;
 import com.hnks.wireworld.automaton.AutomatonSimulation;
