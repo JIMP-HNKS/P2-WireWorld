@@ -56,13 +56,13 @@ public class AppFrame extends JFrame {
         JPanel drawing = new JPanel();
         JButton draw = new JButton("Rysuj");
         JButton erase = new JButton("Wymaż");
-        JButton cabel = new JButton("Przewodnik");
+        JButton cable = new JButton("Przewodnik");
         JButton head = new JButton("Głowa");
         JButton tail = new JButton("Ogon");
 
-        cabel.setIcon(new ImageIcon(getClass().getResource("black_dot.png")));
-        head.setIcon(new ImageIcon(getClass().getResource("red_dot.png")));
-        tail.setIcon(new ImageIcon(getClass().getResource("green_dot.png")));
+        cable.setIcon(new ImageIcon(getClass().getResource("icons/cable.png")));
+        head.setIcon(new ImageIcon(getClass().getResource("icons/head.png")));
+        tail.setIcon(new ImageIcon(getClass().getResource("icons/tail.png")));
 
         drawing.add(draw);
         drawing.add(erase);
@@ -71,7 +71,7 @@ public class AppFrame extends JFrame {
         drawing.add(new JSeparator(SwingConstants.VERTICAL));
         drawing.add(new JSeparator(SwingConstants.VERTICAL));
 
-        drawing.add(cabel);
+        drawing.add(cable);
         drawing.add(head);
         drawing.add(tail);
 
@@ -122,17 +122,17 @@ public class AppFrame extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 erase.setEnabled(false);
                 draw.setEnabled(true);
-                cabel.setEnabled(true);
+                cable.setEnabled(true);
                 head.setEnabled(true);
                 tail.setEnabled(true);
             }
         });
 
-        cabel.addActionListener(new ActionListener() {
+        cable.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(erase.isEnabled()){
-                    cabel.setEnabled(false);
+                    cable.setEnabled(false);
                     head.setEnabled(true);
                     tail.setEnabled(true);
                 }
@@ -144,7 +144,7 @@ public class AppFrame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(erase.isEnabled()){
-                    cabel.setEnabled(true);
+                    cable.setEnabled(true);
                     head.setEnabled(false);
                     tail.setEnabled(true);
                 }
@@ -155,7 +155,7 @@ public class AppFrame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(erase.isEnabled()){
-                    cabel.setEnabled(true);
+                    cable.setEnabled(true);
                     head.setEnabled(true);
                     tail.setEnabled(false);
                 }
