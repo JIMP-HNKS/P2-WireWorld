@@ -1,5 +1,7 @@
 package com.hnks.wireworld;
 
+import com.hnks.wireworld.rules.IAutomatonRule;
+
 import java.io.IOException;
 
 public class WireWorldSimulation {
@@ -80,26 +82,12 @@ public class WireWorldSimulation {
         target[x][y] = targetCell;
     }
 
-    public void generateNext() {
-        /*
-            le rules
-
-            sąsiedztwo:
-            X X X
-            X O X
-            X X X
-
-            pusta -> pusta
-            głowa -> ogon
-            ogon -> kabel
-            1 lub 2 sąsiady są głowami -> głowa
-            reszta -> kabel
-        */
+    public void generateNext(IAutomatonRule rule) {
         WireWorldCell[][] target = new WireWorldCell[width][height];
 
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
-                evolveCell(x, y, target);
+                rule.evolve(this, x, y, target);
             }
         }
 
@@ -126,7 +114,7 @@ public class WireWorldSimulation {
 
                 System.out.print(outChar);
             }
-            System.out.println("");
+            System.out.println("\n");
         }
     }
 
