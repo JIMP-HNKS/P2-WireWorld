@@ -5,7 +5,7 @@ import com.hnks.wireworld.automaton.AutomatonSimulation;
 import com.hnks.wireworld.rules.IAutomatonRule;
 import com.hnks.wireworld.rules.WireWorldRule;
 
-public class WireWorldState {
+public class AppState {
     private AutomatonSimulation sim;
 
     private boolean running;
@@ -16,7 +16,7 @@ public class WireWorldState {
 
     private IAutomatonRule rule = new WireWorldRule();
 
-    public WireWorldState(
+    public AppState(
             AutomatonSimulation sim,
             int simCount
     ) {

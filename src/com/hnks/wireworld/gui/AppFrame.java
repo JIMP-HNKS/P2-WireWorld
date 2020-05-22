@@ -9,13 +9,13 @@ import java.awt.*;
 
 import javax.swing.*;
 
-public class WireWorldFrame extends JFrame {
-    private WireWorldState state;
+public class AppFrame extends JFrame {
+    private AppState state;
 
-    public WireWorldFrame() {
+    public AppFrame() {
         super("WireWorld");
 
-        state = new WireWorldState(
+        state = new AppState(
                 new AutomatonSimulation(80, 50),
                 100
         );

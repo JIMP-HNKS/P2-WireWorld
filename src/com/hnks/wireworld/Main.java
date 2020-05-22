@@ -1,9 +1,9 @@
 package com.hnks.wireworld;
 
-import com.hnks.wireworld.gui.WireWorldFrame;
+import com.hnks.wireworld.gui.AppFrame;
 
 public class Main {
     public static void main(String[] args) {
-        WireWorldFrame frame = new WireWorldFrame();
+        AppFrame frame = new AppFrame();
     }
 }
