@@ -1,6 +1,6 @@
 package com.hnks.wireworld.automaton;
 
-import com.hnks.wireworld.rules.IAutomatonRule;
+import com.hnks.wireworld.automaton.rules.IAutomatonRule;
 
 import java.io.IOException;
 
@@ -32,6 +32,11 @@ public class AutomatonSimulation {
     }
 
     public void setCell(AutomatonCell cell, int x, int y) {
+        if (x >= width) x = x % width;
+        if (y >= height) y = y % height;
+        if (x < 0) x += width;
+        if (y < 0) y += height;
+
         cells[x][y] = cell;
     }
 

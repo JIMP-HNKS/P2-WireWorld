@@ -1,8 +1,8 @@
-package com.hnks.wireworld.rules.gol;
+package com.hnks.wireworld.automaton.rules.gol;
 
 import com.hnks.wireworld.automaton.AutomatonCell;
 import com.hnks.wireworld.automaton.AutomatonSimulation;
-import com.hnks.wireworld.rules.IAutomatonRule;
+import com.hnks.wireworld.automaton.rules.IAutomatonRule;
 
 public class BaseGoLRule implements IAutomatonRule {
     @Override

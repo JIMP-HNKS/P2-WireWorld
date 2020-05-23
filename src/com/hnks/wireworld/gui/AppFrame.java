@@ -1,12 +1,14 @@
 package com.hnks.wireworld.gui;
 
+import com.hnks.wireworld.automaton.AutomatonCell;
 import com.hnks.wireworld.automaton.AutomatonSimulation;
-import com.hnks.wireworld.rules.gol.BaseGoLRule;
-import com.hnks.wireworld.rules.IAutomatonRule;
-import com.hnks.wireworld.rules.WireWorldRule;
-import com.hnks.wireworld.rules.gol.MazeGoLRule;
-import com.hnks.wireworld.rules.gol.TwoByTwoGoLRule;
-import com.hnks.wireworld.rules.gol.WalledCitiesGoLRule;
+import com.hnks.wireworld.automaton.prefabs.AutomatonPrefab;
+import com.hnks.wireworld.automaton.rules.gol.BaseGoLRule;
+import com.hnks.wireworld.automaton.rules.IAutomatonRule;
+import com.hnks.wireworld.automaton.rules.WireWorldRule;
+import com.hnks.wireworld.automaton.rules.gol.MazeGoLRule;
+import com.hnks.wireworld.automaton.rules.gol.TwoByTwoGoLRule;
+import com.hnks.wireworld.automaton.rules.gol.WalledCitiesGoLRule;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -27,6 +29,8 @@ public class AppFrame extends JFrame {
             new MazeGoLRule(),
             new TwoByTwoGoLRule()
     };
+    private AutomatonPrefab[] prefabs = {};
+
     private AppState state;
 
     private boolean isSimRunning = false;
@@ -75,8 +79,11 @@ public class AppFrame extends JFrame {
 
         // For styling
         open.setName("SmallOpenButton");
+        open.setToolTipText("Otwórz");
         save.setName("SmallSaveButton");
+        save.setToolTipText("Zapisz");
         step.setName("SmallStepButton");
+        step.setToolTipText("Wykonaj pojedynczy krok symulacji");
 
         simulate.setIcon(new ImageIcon(getClass().getResource("icons/run.png")));
         step.setIcon(new ImageIcon(getClass().getResource("icons/step.png")));
@@ -101,14 +108,24 @@ public class AppFrame extends JFrame {
         panel.add(save);
 
         JPanel drawing = new JPanel();
-        JButton draw = new JButton("Rysuj");
-        JButton erase = new JButton("Wymaż");
+        JButton draw = new JButton("");
+        JButton erase = new JButton("");
+        JButton insertPrefab = new JButton("");
         JButton cable = new JButton("Przewodnik");
         JButton head = new JButton("Głowa");
         JButton tail = new JButton("Ogon");
 
+        // For styling
+        draw.setName("SmallDrawButton");
+        draw.setToolTipText("Rysuj");
+        erase.setName("SmallEraseButton");
+        erase.setToolTipText("Wymaż");
+        insertPrefab.setName("SmallPrefabButton");
+        insertPrefab.setToolTipText("Dodaj element");
+
         draw.setIcon(new ImageIcon(getClass().getResource("icons/draw.png")));
         erase.setIcon(new ImageIcon(getClass().getResource("icons/erase.png")));
+        insertPrefab.setIcon(new ImageIcon(getClass().getResource("icons/prefab.png")));
 
         cable.setIcon(new ImageIcon(getClass().getResource("icons/cable.png")));
         head.setIcon(new ImageIcon(getClass().getResource("icons/head.png")));
@@ -119,6 +136,7 @@ public class AppFrame extends JFrame {
 
         drawing.add(draw);
         drawing.add(erase);
+        drawing.add(insertPrefab);
 
         drawing.add(new JSeparator(SwingConstants.VERTICAL));
         drawing.add(new JSeparator(SwingConstants.VERTICAL));

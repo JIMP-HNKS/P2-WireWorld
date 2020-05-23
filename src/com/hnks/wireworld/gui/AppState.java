@@ -2,8 +2,7 @@ package com.hnks.wireworld.gui;
 
 import com.hnks.wireworld.automaton.AutomatonCell;
 import com.hnks.wireworld.automaton.AutomatonSimulation;
-import com.hnks.wireworld.rules.IAutomatonRule;
-import com.hnks.wireworld.rules.WireWorldRule;
+import com.hnks.wireworld.automaton.rules.IAutomatonRule;
 
 public class AppState {
     private AutomatonSimulation sim;

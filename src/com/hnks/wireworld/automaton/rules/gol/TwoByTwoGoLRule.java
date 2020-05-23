@@ -1,4 +1,4 @@
-package com.hnks.wireworld.rules.gol;
+package com.hnks.wireworld.automaton.rules.gol;
 
 public class TwoByTwoGoLRule extends BaseGoLRule {
     @Override
