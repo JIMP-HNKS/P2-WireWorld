@@ -43,21 +43,23 @@ public class AppFrame extends JFrame {
         );
         num_of_gen.setBounds(70, 70, 50, 50);
         JButton simulate = new JButton("Symuluj");
-        // simulate.setBackground(Color.MAGENTA);
-        simulate.setOpaque(true);
-        JButton open = new JButton("");
 
+        JButton open = new JButton("");
         JButton save = new JButton("");
+
+        // For styling
+        open.setName("SmallOpenButton");
+        save.setName("SmallSaveButton");
 
         simulate.setIcon(new ImageIcon(getClass().getResource("icons/run.png")));
         open.setIcon(new ImageIcon(getClass().getResource("icons/open.png")));
         save.setIcon(new ImageIcon(getClass().getResource("icons/save.png")));
 
-
         panel.add(simulate, "East");
         panel.add(num_of_gen, "Center");
         panel.add(gen, "West");
 
+        // EW EW EW NASTY NASTY NASTY
         panel.add(new JSeparator(SwingConstants.VERTICAL));
         panel.add(new JSeparator(SwingConstants.VERTICAL));
         panel.add(new JSeparator(SwingConstants.VERTICAL));
@@ -68,8 +70,6 @@ public class AppFrame extends JFrame {
         panel.add(new JSeparator(SwingConstants.VERTICAL));
         panel.add(new JSeparator(SwingConstants.VERTICAL));
         panel.add(new JSeparator(SwingConstants.VERTICAL));
-
-
 
         panel.add(open);
         panel.add(save);
@@ -87,6 +87,9 @@ public class AppFrame extends JFrame {
         cable.setIcon(new ImageIcon(getClass().getResource("icons/cable.png")));
         head.setIcon(new ImageIcon(getClass().getResource("icons/head.png")));
         tail.setIcon(new ImageIcon(getClass().getResource("icons/tail.png")));
+
+        draw.setSelected(true);
+        cable.setSelected(true);
 
         drawing.add(draw);
         drawing.add(erase);
@@ -142,6 +145,14 @@ public class AppFrame extends JFrame {
                 cable.setEnabled(true);
                 head.setEnabled(true);
                 tail.setEnabled(true);
+
+                if (cable.isSelected()) {
+                    drawingPanel.option = DrawingOption.CABLE;
+                } else if (head.isSelected()) {
+                    drawingPanel.option = DrawingOption.HEAD;
+                } else {
+                    drawingPanel.option = DrawingOption.TAIL;
+                }
             }
         });
 

@@ -11,6 +11,7 @@
 
     <style id="buttonStyle">
         <insets top="8" right="20" left="20" bottom="8"/>
+        <property key="Button.iconTextGap" type="integer" value="8"/>
         <state>
             <imagePainter method="buttonBackground" path="gui/theme/ButtonNormal.png" sourceInsets="4 4 4 4"/>
             <color value="#B8B5BC" type="TEXT_FOREGROUND"/>
@@ -32,21 +33,17 @@
     </style>
     <bind style="buttonStyle" type="region" key="Button"/>
 
+    <style id="buttonStyleSmall" clone="buttonStyle">
+        <insets top="8" right="12" left="12" bottom="8"/>
+    </style>
+    <bind style="buttonStyleSmall" type="name" key="Small.*Button"/>
+
     <style id="spinnerStyle">
         <insets top="8" right="20" left="20" bottom="8"/>
+        <property key="ArrowButton.size" type="integer" value="16"/>
         <state>
             <imagePainter method="buttonBackground" path="gui/theme/ButtonNormal.png" sourceInsets="4 4 4 4"/>
-            <color value="#B8B5BC" type="TEXT_FOREGROUND"/>
-        </state>
-        <state value="DISABLED">
-            <imagePainter method="buttonBackground" path="gui/theme/ButtonActive.png" sourceInsets="4 4 4 4"/>
-            <color value="#FFFFFF" type="TEXT_FOREGROUND"/>
-        </state>
-        <state value="PRESSED">
-            <imagePainter method="buttonBackground" path="gui/theme/ButtonPressed.png" sourceInsets="4 4 4 4"/>
-        </state>
-        <state value="MOUSE_OVER">
-            <imagePainter method="buttonBackground" path="gui/theme/ButtonHover.png" sourceInsets="4 4 4 4"/>
+            <color value="RED" type="TEXT_FOREGROUND"/>
         </state>
     </style>
     <bind style="spinnerStyle" type="region" key="Spinner"/>

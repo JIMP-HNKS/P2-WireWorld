@@ -13,7 +13,7 @@ public class DrawingPanel extends JPanel {
     boolean drawing;
 
     AppState state;
-    protected DrawingOption option = DrawingOption.ERASE;
+    protected DrawingOption option = DrawingOption.CABLE;
 
 
     public DrawingPanel(AppState state){
