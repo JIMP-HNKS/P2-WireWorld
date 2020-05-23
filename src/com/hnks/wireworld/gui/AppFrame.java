@@ -43,11 +43,16 @@ public class AppFrame extends JFrame {
         );
         num_of_gen.setBounds(70, 70, 50, 50);
         JButton simulate = new JButton("Symuluj");
+
         // simulate.setBackground(Color.MAGENTA);
         simulate.setOpaque(true);
-        JButton open = new JButton("Otwórz...");
+        JButton open = new JButton("");
 
-        JButton save = new JButton("Zapisz...");
+        JButton save = new JButton("");
+
+        simulate.setIcon(new ImageIcon(getClass().getResource("icons/run.png")));
+        open.setIcon(new ImageIcon(getClass().getResource("icons/open.png")));
+        save.setIcon(new ImageIcon(getClass().getResource("icons/save.png")));
 
 
         panel.add(simulate, "East");
@@ -76,6 +81,9 @@ public class AppFrame extends JFrame {
         JButton cable = new JButton("Przewodnik");
         JButton head = new JButton("Głowa");
         JButton tail = new JButton("Ogon");
+
+        draw.setIcon(new ImageIcon(getClass().getResource("icons/draw.png")));
+        erase.setIcon(new ImageIcon(getClass().getResource("icons/erase.png")));
 
         cable.setIcon(new ImageIcon(getClass().getResource("icons/cable.png")));
         head.setIcon(new ImageIcon(getClass().getResource("icons/head.png")));
@@ -130,53 +138,49 @@ public class AppFrame extends JFrame {
         draw.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                draw.setEnabled(false);
-                erase.setEnabled(true);
-            }
-        });
-
-        erase.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                erase.setEnabled(false);
-                draw.setEnabled(true);
+                draw.setSelected(true);
+                erase.setSelected(false);
                 cable.setEnabled(true);
                 head.setEnabled(true);
                 tail.setEnabled(true);
             }
         });
 
+        erase.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                erase.setSelected(true);
+                draw.setSelected(false);
+                cable.setEnabled(false);
+                head.setEnabled(false);
+                tail.setEnabled(false);
+            }
+        });
+
         cable.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(erase.isEnabled()){
-                    cable.setEnabled(false);
-                    head.setEnabled(true);
-                    tail.setEnabled(true);
-                }
-
+                cable.setSelected(true);
+                head.setSelected(false);
+                tail.setSelected(false);
             }
         });
 
         head.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(erase.isEnabled()){
-                    cable.setEnabled(true);
-                    head.setEnabled(false);
-                    tail.setEnabled(true);
-                }
+                cable.setSelected(false);
+                head.setSelected(true);
+                tail.setSelected(false);
             }
         });
 
         tail.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(erase.isEnabled()){
-                    cable.setEnabled(true);
-                    head.setEnabled(true);
-                    tail.setEnabled(false);
-                }
+                cable.setSelected(false);
+                head.setSelected(false);
+                tail.setSelected(true);
             }
         });
     }

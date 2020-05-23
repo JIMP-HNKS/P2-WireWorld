@@ -16,6 +16,10 @@
             <color value="#B8B5BC" type="TEXT_FOREGROUND"/>
         </state>
         <state value="DISABLED">
+            <imagePainter method="buttonBackground" path="gui/theme/ButtonDisabled.png" sourceInsets="4 4 4 4"/>
+            <color value="#2D2B30" type="TEXT_FOREGROUND"/>
+        </state>
+        <state value="SELECTED">
             <imagePainter method="buttonBackground" path="gui/theme/ButtonActive.png" sourceInsets="4 4 4 4"/>
             <color value="#FFFFFF" type="TEXT_FOREGROUND"/>
         </state>
@@ -27,4 +31,23 @@
         </state>
     </style>
     <bind style="buttonStyle" type="region" key="Button"/>
+
+    <style id="spinnerStyle">
+        <insets top="8" right="20" left="20" bottom="8"/>
+        <state>
+            <imagePainter method="buttonBackground" path="gui/theme/ButtonNormal.png" sourceInsets="4 4 4 4"/>
+            <color value="#B8B5BC" type="TEXT_FOREGROUND"/>
+        </state>
+        <state value="DISABLED">
+            <imagePainter method="buttonBackground" path="gui/theme/ButtonActive.png" sourceInsets="4 4 4 4"/>
+            <color value="#FFFFFF" type="TEXT_FOREGROUND"/>
+        </state>
+        <state value="PRESSED">
+            <imagePainter method="buttonBackground" path="gui/theme/ButtonPressed.png" sourceInsets="4 4 4 4"/>
+        </state>
+        <state value="MOUSE_OVER">
+            <imagePainter method="buttonBackground" path="gui/theme/ButtonHover.png" sourceInsets="4 4 4 4"/>
+        </state>
+    </style>
+    <bind style="spinnerStyle" type="region" key="Spinner"/>
 </synth>
