@@ -1,6 +1,8 @@
 package com.hnks.wireworld.gui;
 
 import com.hnks.wireworld.automaton.AutomatonSimulation;
+import com.hnks.wireworld.rules.IAutomatonRule;
+import com.hnks.wireworld.rules.WireWorldRule;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,6 +12,9 @@ import java.awt.*;
 import javax.swing.*;
 
 public class AppFrame extends JFrame {
+    private IAutomatonRule[] rules = {
+            new WireWorldRule()
+    };
     private AppState state;
 
     public AppFrame() {
@@ -17,7 +22,8 @@ public class AppFrame extends JFrame {
 
         state = new AppState(
                 new AutomatonSimulation(80, 50),
-                100
+                100,
+                rules[0]
         );
 
         setLayout(new BorderLayout());
@@ -36,13 +42,16 @@ public class AppFrame extends JFrame {
 
         DrawingPanel drawingPanel = new DrawingPanel(state);
 
-        JPanel pliki = new JPanel();
+        JComboBox<IAutomatonRule> ruleSelector = new JComboBox<>(rules);
+
         JLabel gen = new JLabel("generacji");
         JSpinner num_of_gen = new JSpinner(
                 new SpinnerNumberModel(state.getSimCount(), 1, 500, 1)
         );
         num_of_gen.setBounds(70, 70, 50, 50);
+
         JButton simulate = new JButton("Symuluj");
+        JButton step = new JButton("");
 
         JButton open = new JButton("");
         JButton save = new JButton("");
@@ -50,12 +59,16 @@ public class AppFrame extends JFrame {
         // For styling
         open.setName("SmallOpenButton");
         save.setName("SmallSaveButton");
+        step.setName("SmallStepButton");
 
         simulate.setIcon(new ImageIcon(getClass().getResource("icons/run.png")));
+        step.setIcon(new ImageIcon(getClass().getResource("icons/step.png")));
         open.setIcon(new ImageIcon(getClass().getResource("icons/open.png")));
         save.setIcon(new ImageIcon(getClass().getResource("icons/save.png")));
 
+        panel.add(ruleSelector);
         panel.add(simulate, "East");
+        panel.add(step, "East");
         panel.add(num_of_gen, "Center");
         panel.add(gen, "West");
 
@@ -106,6 +119,23 @@ public class AppFrame extends JFrame {
         //add(BorderLayout.EAST, pliki);
         add(BorderLayout.SOUTH, drawing);
         add(BorderLayout.CENTER, drawingPanel);
+
+        ruleSelector.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                state.setRule(
+                        (IAutomatonRule)ruleSelector.getSelectedItem()
+                );
+            }
+        });
+
+        step.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                state.generateNext();
+                drawingPanel.repaint();
+            }
+        });
 
         open.addActionListener(new ActionListener() {
             @Override

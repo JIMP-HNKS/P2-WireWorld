@@ -32,6 +32,7 @@
         </state>
     </style>
     <bind style="buttonStyle" type="region" key="Button"/>
+    <bind style="buttonStyle" type="region" key="ArrowButton"/>
 
     <style id="buttonStyleSmall" clone="buttonStyle">
         <insets top="8" right="12" left="12" bottom="8"/>

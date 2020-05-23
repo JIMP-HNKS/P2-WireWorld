@@ -15,6 +15,11 @@ public class WireWorldRule implements IAutomatonRule {
     }
 
     @Override
+    public String toString() {
+        return getName();
+    }
+
+    @Override
     public void evolve(AutomatonSimulation sim, int x, int y, AutomatonCell[][] target) {
         AutomatonCell cell = sim.getCell(x, y);
         AutomatonCell targetCell = AutomatonCell.BLANK;
