@@ -3,6 +3,10 @@ package com.hnks.wireworld.gui;
 import com.hnks.wireworld.automaton.AutomatonCell;
 import com.hnks.wireworld.automaton.AutomatonSimulation;
 import com.hnks.wireworld.automaton.prefabs.AutomatonPrefab;
+import com.hnks.wireworld.automaton.prefabs.gol.BlinkerGoLPrefab;
+import com.hnks.wireworld.automaton.prefabs.gol.GliderGoLPrefab;
+import com.hnks.wireworld.automaton.prefabs.wwld.DiodeRevWWLDPrefab;
+import com.hnks.wireworld.automaton.prefabs.wwld.DiodeWWLDPrefab;
 import com.hnks.wireworld.automaton.rules.gol.BaseGoLRule;
 import com.hnks.wireworld.automaton.rules.IAutomatonRule;
 import com.hnks.wireworld.automaton.rules.WireWorldRule;
@@ -30,9 +34,10 @@ public class AppFrame extends JFrame {
             new TwoByTwoGoLRule()
     };
     private AutomatonPrefab[] prefabs = {
-            new AutomatonPrefab("test", 2, 2, new int[][]{
-                    {0, 1}, {1, 0}
-            }, 0, 0)
+            new DiodeWWLDPrefab(),
+            new DiodeRevWWLDPrefab(),
+            new BlinkerGoLPrefab(),
+            new GliderGoLPrefab()
     };
 
     private AppState state;
@@ -260,6 +265,15 @@ public class AppFrame extends JFrame {
                 tail.setEnabled(false);
 
                 drawingPanel.option = DrawingOption.ERASE;
+            }
+        });
+
+        prefabSelector.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                drawingPanel.setPrefab(
+                        (AutomatonPrefab)prefabSelector.getSelectedItem()
+                );
             }
         });
 
