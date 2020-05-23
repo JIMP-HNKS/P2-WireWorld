@@ -60,13 +60,21 @@ public class DrawingPanel extends JPanel {
             p1 = e.getPoint();
 
             switch( option ){
-                case ERASE -> state.getSim().setCell( AutomatonCell.BLANK,p1.x/8, p1.y/8 );
+                case ERASE:
+                    state.getSim().setCell( AutomatonCell.BLANK,p1.x/8, p1.y/8 );
+                    break;
 
-                case HEAD -> state.getSim().setCell( AutomatonCell.HEAD,p1.x/8, p1.y/8 );
+                case HEAD:
+                    state.getSim().setCell( AutomatonCell.HEAD,p1.x/8, p1.y/8 );
+                    break;
 
-                case TAIL -> state.getSim().setCell( AutomatonCell.TAIL,p1.x/8, p1.y/8 );
+                case TAIL:
+                    state.getSim().setCell( AutomatonCell.TAIL,p1.x/8, p1.y/8 );
+                    break;
 
-                case CABLE -> state.getSim().setCell( AutomatonCell.CABLE,p1.x/8, p1.y/8 );
+                case CABLE:
+                    state.getSim().setCell( AutomatonCell.CABLE,p1.x/8, p1.y/8 );
+                    break;
             }
 
             repaint();
@@ -78,13 +86,21 @@ public class DrawingPanel extends JPanel {
             p1 = e.getPoint();
 
             switch( option ){
-                case ERASE -> state.getSim().setCell( AutomatonCell.BLANK,p1.x/8, p1.y/8 );
+                case ERASE:
+                    state.getSim().setCell( AutomatonCell.BLANK,p1.x/8, p1.y/8 );
+                    break;
 
-                case HEAD -> state.getSim().setCell( AutomatonCell.HEAD,p1.x/8, p1.y/8 );
+                case HEAD:
+                    state.getSim().setCell( AutomatonCell.HEAD,p1.x/8, p1.y/8 );
+                    break;
 
-                case TAIL -> state.getSim().setCell( AutomatonCell.TAIL,p1.x/8, p1.y/8 );
+                case TAIL:
+                    state.getSim().setCell( AutomatonCell.TAIL,p1.x/8, p1.y/8 );
+                    break;
 
-                case CABLE -> state.getSim().setCell( AutomatonCell.CABLE,p1.x/8, p1.y/8 );
+                case CABLE:
+                    state.getSim().setCell( AutomatonCell.CABLE,p1.x/8, p1.y/8 );
+                    break;
             }
 
             repaint();
