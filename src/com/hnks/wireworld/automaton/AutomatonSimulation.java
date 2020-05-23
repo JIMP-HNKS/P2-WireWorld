@@ -35,6 +35,21 @@ public class AutomatonSimulation {
         cells[x][y] = cell;
     }
 
+    public int countNEmpty(int x, int y) {
+        int count = 0;
+
+        for (int dx = -1; dx <= 1; dx++) {
+            for (int dy = -1; dy <= 1; dy++) {
+                if (dx == 0 && dy == 0) continue;
+                AutomatonCell cell = getCell(x + dx, y + dy);
+
+                if (cell != AutomatonCell.BLANK) count++;
+            }
+        }
+
+        return count;
+    }
+
     public int countHeads(int x, int y) {
         int count = 0;
 

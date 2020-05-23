@@ -1,8 +1,12 @@
 package com.hnks.wireworld.gui;
 
 import com.hnks.wireworld.automaton.AutomatonSimulation;
+import com.hnks.wireworld.rules.gol.BaseGoLRule;
 import com.hnks.wireworld.rules.IAutomatonRule;
 import com.hnks.wireworld.rules.WireWorldRule;
+import com.hnks.wireworld.rules.gol.MazeGoLRule;
+import com.hnks.wireworld.rules.gol.TwoByTwoGoLRule;
+import com.hnks.wireworld.rules.gol.WalledCitiesGoLRule;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,7 +17,11 @@ import javax.swing.*;
 
 public class AppFrame extends JFrame {
     private IAutomatonRule[] rules = {
-            new WireWorldRule()
+            new WireWorldRule(),
+            new BaseGoLRule(),
+            new WalledCitiesGoLRule(),
+            new MazeGoLRule(),
+            new TwoByTwoGoLRule()
     };
     private AppState state;
 
