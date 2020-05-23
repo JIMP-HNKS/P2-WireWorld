@@ -22,7 +22,7 @@ public class AppFrame extends JFrame {
 
         setLayout(new BorderLayout());
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setPreferredSize(new Dimension(640, 600));
+        setPreferredSize(new Dimension(640, 500));
         setVisible(true);
         setResizable(false);
 
@@ -43,16 +43,11 @@ public class AppFrame extends JFrame {
         );
         num_of_gen.setBounds(70, 70, 50, 50);
         JButton simulate = new JButton("Symuluj");
-
         // simulate.setBackground(Color.MAGENTA);
         simulate.setOpaque(true);
-        JButton open = new JButton("");
+        JButton open = new JButton("Otwórz...");
 
-        JButton save = new JButton("");
-
-        simulate.setIcon(new ImageIcon(getClass().getResource("icons/run.png")));
-        open.setIcon(new ImageIcon(getClass().getResource("icons/open.png")));
-        save.setIcon(new ImageIcon(getClass().getResource("icons/save.png")));
+        JButton save = new JButton("Zapisz...");
 
 
         panel.add(simulate, "East");
@@ -82,9 +77,6 @@ public class AppFrame extends JFrame {
         JButton head = new JButton("Głowa");
         JButton tail = new JButton("Ogon");
 
-        draw.setIcon(new ImageIcon(getClass().getResource("icons/draw.png")));
-        erase.setIcon(new ImageIcon(getClass().getResource("icons/erase.png")));
-
         cable.setIcon(new ImageIcon(getClass().getResource("icons/cable.png")));
         head.setIcon(new ImageIcon(getClass().getResource("icons/head.png")));
         tail.setIcon(new ImageIcon(getClass().getResource("icons/tail.png")));
@@ -101,7 +93,6 @@ public class AppFrame extends JFrame {
         drawing.add(tail);
 
         add(BorderLayout.NORTH, panel);
-        //add(BorderLayout.EAST, pliki);
         add(BorderLayout.SOUTH, drawing);
         add(BorderLayout.CENTER, drawingPanel);
 
@@ -138,49 +129,60 @@ public class AppFrame extends JFrame {
         draw.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                draw.setSelected(true);
-                erase.setSelected(false);
-                cable.setEnabled(true);
-                head.setEnabled(true);
-                tail.setEnabled(true);
+                draw.setEnabled(false);
+                erase.setEnabled(true);
             }
         });
 
         erase.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                erase.setSelected(true);
-                draw.setSelected(false);
-                cable.setEnabled(false);
-                head.setEnabled(false);
-                tail.setEnabled(false);
+                erase.setEnabled(false);
+                draw.setEnabled(true);
+                cable.setEnabled(true);
+                head.setEnabled(true);
+                tail.setEnabled(true);
+                drawingPanel.option = DrawingOption.ERASE;
             }
         });
 
         cable.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cable.setSelected(true);
-                head.setSelected(false);
-                tail.setSelected(false);
+                if(erase.isEnabled()){
+                    draw.setEnabled(false);
+                    cable.setEnabled(false);
+                    head.setEnabled(true);
+                    tail.setEnabled(true);
+                    drawingPanel.option = DrawingOption.CABLE;
+                }
+
             }
         });
 
         head.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cable.setSelected(false);
-                head.setSelected(true);
-                tail.setSelected(false);
+                if(erase.isEnabled()){
+                    draw.setEnabled(false);
+                    cable.setEnabled(true);
+                    head.setEnabled(false);
+                    tail.setEnabled(true);
+                    drawingPanel.option = DrawingOption.HEAD;
+                }
             }
         });
 
         tail.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cable.setSelected(false);
-                head.setSelected(false);
-                tail.setSelected(true);
+                if(erase.isEnabled()){
+                    draw.setEnabled(false);
+                    cable.setEnabled(true);
+                    head.setEnabled(true);
+                    tail.setEnabled(false);
+                    drawingPanel.option = DrawingOption.TAIL;
+                }
             }
         });
     }
