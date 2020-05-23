@@ -29,7 +29,11 @@ public class AppFrame extends JFrame {
             new MazeGoLRule(),
             new TwoByTwoGoLRule()
     };
-    private AutomatonPrefab[] prefabs = {};
+    private AutomatonPrefab[] prefabs = {
+            new AutomatonPrefab("test", 2, 2, new int[][]{
+                    {0, 1}, {1, 0}
+            }, 0, 0)
+    };
 
     private AppState state;
 
@@ -115,6 +119,9 @@ public class AppFrame extends JFrame {
         JButton head = new JButton("Głowa");
         JButton tail = new JButton("Ogon");
 
+        JComboBox<AutomatonPrefab> prefabSelector = new JComboBox<>(prefabs);
+        prefabSelector.setEnabled(false);
+
         // For styling
         draw.setName("SmallDrawButton");
         draw.setToolTipText("Rysuj");
@@ -136,11 +143,9 @@ public class AppFrame extends JFrame {
 
         drawing.add(draw);
         drawing.add(erase);
-        drawing.add(insertPrefab);
 
-        drawing.add(new JSeparator(SwingConstants.VERTICAL));
-        drawing.add(new JSeparator(SwingConstants.VERTICAL));
-        drawing.add(new JSeparator(SwingConstants.VERTICAL));
+        drawing.add(insertPrefab);
+        drawing.add(prefabSelector);
 
         drawing.add(cable);
         drawing.add(head);
@@ -221,8 +226,12 @@ public class AppFrame extends JFrame {
         draw.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                insertPrefab.setSelected(false);
                 draw.setSelected(true);
                 erase.setSelected(false);
+
+                prefabSelector.setEnabled(false);
+
                 cable.setEnabled(true);
                 head.setEnabled(true);
                 tail.setEnabled(true);
@@ -240,12 +249,37 @@ public class AppFrame extends JFrame {
         erase.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                insertPrefab.setSelected(false);
                 erase.setSelected(true);
                 draw.setSelected(false);
+
+                prefabSelector.setEnabled(false);
+
                 cable.setEnabled(false);
                 head.setEnabled(false);
                 tail.setEnabled(false);
+
                 drawingPanel.option = DrawingOption.ERASE;
+            }
+        });
+
+        insertPrefab.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                insertPrefab.setSelected(true);
+                erase.setSelected(false);
+                draw.setSelected(false);
+
+                prefabSelector.setEnabled(true);
+
+                cable.setEnabled(false);
+                head.setEnabled(false);
+                tail.setEnabled(false);
+
+                drawingPanel.option = DrawingOption.PREFAB;
+                drawingPanel.setPrefab(
+                        (AutomatonPrefab)prefabSelector.getSelectedItem()
+                );
             }
         });
 

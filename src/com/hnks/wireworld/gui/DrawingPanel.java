@@ -1,6 +1,7 @@
 package com.hnks.wireworld.gui;
 
 import com.hnks.wireworld.automaton.AutomatonCell;
+import com.hnks.wireworld.automaton.prefabs.AutomatonPrefab;
 
 import java.awt.*;
 import java.awt.Point;
@@ -14,7 +15,7 @@ public class DrawingPanel extends JPanel {
 
     AppState state;
     protected DrawingOption option = DrawingOption.CABLE;
-
+    private AutomatonPrefab prefab;
 
     public DrawingPanel(AppState state){
         this.setPreferredSize(new Dimension(640, 400));
@@ -54,8 +55,11 @@ public class DrawingPanel extends JPanel {
 
     }
 
-    private class MouseHandler extends MouseAdapter {
+    public void setPrefab(AutomatonPrefab prefab) {
+        this.prefab = prefab;
+    }
 
+    private class MouseHandler extends MouseAdapter {
         public void mousePressed(MouseEvent e) {
             drawing = true;
             p1 = e.getPoint();
@@ -76,10 +80,13 @@ public class DrawingPanel extends JPanel {
                 case CABLE:
                     state.getSim().setCell( AutomatonCell.CABLE,p1.x/8, p1.y/8 );
                     break;
+
+                case PREFAB:
+                    prefab.place(state.getSim(), p1.x/8, p1.y/8);
+                    break;
             }
 
             repaint();
-            // rysuj no
         }
 
         public void mouseDragged(MouseEvent e) {

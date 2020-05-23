@@ -43,4 +43,8 @@ public class AutomatonPrefab {
             }
         }
     }
+
+    public String toString() {
+        return id;
+    }
 }
