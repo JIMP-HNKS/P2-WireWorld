@@ -12,8 +12,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.awt.*;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 public class AppFrame extends JFrame {
     private IAutomatonRule[] rules = {
@@ -24,6 +28,11 @@ public class AppFrame extends JFrame {
             new TwoByTwoGoLRule()
     };
     private AppState state;
+
+    private boolean isSimRunning = false;
+    private Timer simTimer;
+    private JSpinner simCounter;
+    private DrawingPanel drawingPanel;
 
     public AppFrame() {
         super("WireWorld");
@@ -48,15 +57,15 @@ public class AppFrame extends JFrame {
     public void createUI(){
         JPanel panel = new JPanel();
 
-        DrawingPanel drawingPanel = new DrawingPanel(state);
+        drawingPanel = new DrawingPanel(state);
 
         JComboBox<IAutomatonRule> ruleSelector = new JComboBox<>(rules);
 
         JLabel gen = new JLabel("generacji");
-        JSpinner num_of_gen = new JSpinner(
+        simCounter = new JSpinner(
                 new SpinnerNumberModel(state.getSimCount(), 1, 500, 1)
         );
-        num_of_gen.setBounds(70, 70, 50, 50);
+        simCounter.setBounds(70, 70, 50, 50);
 
         JButton simulate = new JButton("Symuluj");
         JButton step = new JButton("");
@@ -77,14 +86,10 @@ public class AppFrame extends JFrame {
         panel.add(ruleSelector);
         panel.add(simulate, "East");
         panel.add(step, "East");
-        panel.add(num_of_gen, "Center");
+        panel.add(simCounter, "Center");
         panel.add(gen, "West");
 
         // EW EW EW NASTY NASTY NASTY
-        panel.add(new JSeparator(SwingConstants.VERTICAL));
-        panel.add(new JSeparator(SwingConstants.VERTICAL));
-        panel.add(new JSeparator(SwingConstants.VERTICAL));
-        panel.add(new JSeparator(SwingConstants.VERTICAL));
         panel.add(new JSeparator(SwingConstants.VERTICAL));
         panel.add(new JSeparator(SwingConstants.VERTICAL));
         panel.add(new JSeparator(SwingConstants.VERTICAL));
@@ -137,11 +142,31 @@ public class AppFrame extends JFrame {
             }
         });
 
+        simulate.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (!isSimRunning && state.getSimCount() != 0) {
+                    simTimer = new Timer();
+                    simTimer.schedule(new AppSimulationTimerTask(), 0, 100);
+                } else {
+                    simTimer.cancel();
+                }
+                isSimRunning = !isSimRunning;
+            }
+        });
+
         step.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 state.generateNext();
                 drawingPanel.repaint();
+            }
+        });
+
+        simCounter.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                state.setSimCount((int)simCounter.getValue());
             }
         });
 
@@ -239,5 +264,23 @@ public class AppFrame extends JFrame {
 
     public void setPreferredSize(Dimension preferredSize) {
         super.setPreferredSize(preferredSize);
+    }
+
+    private class AppSimulationTimerTask extends TimerTask {
+        @Override
+        public void run() {
+            int count = state.getSimCount();
+
+            if (count == 0) {
+                cancel();
+                isSimRunning = false;
+            }
+
+            state.generateNext();
+            drawingPanel.repaint();
+
+            state.setSimCount(count - 1);
+            simCounter.setValue(count);
+        }
     }
 }
