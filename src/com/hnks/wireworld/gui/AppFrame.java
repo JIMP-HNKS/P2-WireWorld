@@ -1,12 +1,12 @@
 package com.hnks.wireworld.gui;
 
-import com.hnks.wireworld.automaton.AutomatonCell;
 import com.hnks.wireworld.automaton.AutomatonSimulation;
 import com.hnks.wireworld.automaton.prefabs.AutomatonPrefab;
 import com.hnks.wireworld.automaton.prefabs.gol.BlinkerGoLPrefab;
 import com.hnks.wireworld.automaton.prefabs.gol.GliderGoLPrefab;
 import com.hnks.wireworld.automaton.prefabs.wwld.DiodeRevWWLDPrefab;
 import com.hnks.wireworld.automaton.prefabs.wwld.DiodeWWLDPrefab;
+import com.hnks.wireworld.automaton.rules.ElementaryAutomatonRule;
 import com.hnks.wireworld.automaton.rules.gol.BaseGoLRule;
 import com.hnks.wireworld.automaton.rules.IAutomatonRule;
 import com.hnks.wireworld.automaton.rules.WireWorldRule;
@@ -31,7 +31,11 @@ public class AppFrame extends JFrame {
             new BaseGoLRule(),
             new WalledCitiesGoLRule(),
             new MazeGoLRule(),
-            new TwoByTwoGoLRule()
+            new TwoByTwoGoLRule(),
+            new ElementaryAutomatonRule(110),
+            new ElementaryAutomatonRule(57),
+            new ElementaryAutomatonRule(60),
+            new ElementaryAutomatonRule(106)
     };
     private AutomatonPrefab[] prefabs = {
             new DiodeWWLDPrefab(),
@@ -58,7 +62,7 @@ public class AppFrame extends JFrame {
 
         setLayout(new BorderLayout());
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setPreferredSize(new Dimension(640, 500));
+        setPreferredSize(new Dimension(640, 540));
         setVisible(true);
         setResizable(false);
 
