@@ -1,12 +1,12 @@
 package com.hnks.wireworld.gui;
 
+import com.hnks.wireworld.automaton.AutomatonCell;
 import com.hnks.wireworld.automaton.AutomatonSimulation;
 import com.hnks.wireworld.automaton.prefabs.AutomatonPrefab;
 import com.hnks.wireworld.automaton.prefabs.gol.BlinkerGoLPrefab;
 import com.hnks.wireworld.automaton.prefabs.gol.GliderGoLPrefab;
 import com.hnks.wireworld.automaton.prefabs.wwld.DiodeRevWWLDPrefab;
 import com.hnks.wireworld.automaton.prefabs.wwld.DiodeWWLDPrefab;
-import com.hnks.wireworld.automaton.rules.ElementaryAutomatonRule;
 import com.hnks.wireworld.automaton.rules.gol.BaseGoLRule;
 import com.hnks.wireworld.automaton.rules.IAutomatonRule;
 import com.hnks.wireworld.automaton.rules.WireWorldRule;
@@ -31,11 +31,7 @@ public class AppFrame extends JFrame {
             new BaseGoLRule(),
             new WalledCitiesGoLRule(),
             new MazeGoLRule(),
-            new TwoByTwoGoLRule(),
-            new ElementaryAutomatonRule(110),
-            new ElementaryAutomatonRule(57),
-            new ElementaryAutomatonRule(60),
-            new ElementaryAutomatonRule(106)
+            new TwoByTwoGoLRule()
     };
     private AutomatonPrefab[] prefabs = {
             new DiodeWWLDPrefab(),
@@ -62,7 +58,7 @@ public class AppFrame extends JFrame {
 
         setLayout(new BorderLayout());
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setPreferredSize(new Dimension(640, 540));
+        setPreferredSize(new Dimension(650, 500));
         setVisible(true);
         setResizable(false);
 
@@ -123,6 +119,7 @@ public class AppFrame extends JFrame {
         JPanel drawing = new JPanel();
         JButton draw = new JButton("");
         JButton erase = new JButton("");
+        JButton eraseAll = new JButton("E");
         JButton insertPrefab = new JButton("");
         JButton cable = new JButton("Przewodnik");
         JButton head = new JButton("Głowa");
@@ -136,6 +133,8 @@ public class AppFrame extends JFrame {
         draw.setToolTipText("Rysuj");
         erase.setName("SmallEraseButton");
         erase.setToolTipText("Wymaż");
+        eraseAll.setName("SmallEraseAllButton");
+        eraseAll.setToolTipText("Wymaż wszystko");
         insertPrefab.setName("SmallPrefabButton");
         insertPrefab.setToolTipText("Dodaj element");
 
@@ -152,6 +151,7 @@ public class AppFrame extends JFrame {
 
         drawing.add(draw);
         drawing.add(erase);
+        drawing.add(eraseAll);
 
         drawing.add(insertPrefab);
         drawing.add(prefabSelector);
@@ -161,7 +161,6 @@ public class AppFrame extends JFrame {
         drawing.add(tail);
 
         add(BorderLayout.NORTH, panel);
-        //add(BorderLayout.EAST, pliki);
         add(BorderLayout.SOUTH, drawing);
         add(BorderLayout.CENTER, drawingPanel);
 
@@ -269,6 +268,25 @@ public class AppFrame extends JFrame {
                 tail.setEnabled(false);
 
                 drawingPanel.option = DrawingOption.ERASE;
+            }
+        });
+
+        eraseAll.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                insertPrefab.setSelected(false);
+                erase.setSelected(false);
+                draw.setSelected(true);
+
+                prefabSelector.setEnabled(false);
+
+                cable.setSelected(true);
+                head.setSelected(false);
+                tail.setSelected(false);
+                drawingPanel.clearAllCells();
+                drawingPanel.option = DrawingOption.CABLE;
+
+
             }
         });
 
