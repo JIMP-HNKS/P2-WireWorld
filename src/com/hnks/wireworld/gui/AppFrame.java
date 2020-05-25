@@ -213,6 +213,7 @@ public class AppFrame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JFileChooser chooser = new JFileChooser();
+                chooser.setFileFilter(new FileNameExtensionFilter(".wwd", "wwd"));
                 int status = chooser.showOpenDialog(null);
                 if (status == JFileChooser.APPROVE_OPTION) {
                     File file = chooser.getSelectedFile();
