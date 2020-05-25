@@ -58,7 +58,7 @@ public class AppFrame extends JFrame {
 
         setLayout(new BorderLayout());
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setPreferredSize(new Dimension(640, 500));
+        setPreferredSize(new Dimension(650, 500));
         setVisible(true);
         setResizable(false);
 
@@ -119,6 +119,7 @@ public class AppFrame extends JFrame {
         JPanel drawing = new JPanel();
         JButton draw = new JButton("");
         JButton erase = new JButton("");
+        JButton eraseAll = new JButton("E");
         JButton insertPrefab = new JButton("");
         JButton cable = new JButton("Przewodnik");
         JButton head = new JButton("Głowa");
@@ -132,6 +133,8 @@ public class AppFrame extends JFrame {
         draw.setToolTipText("Rysuj");
         erase.setName("SmallEraseButton");
         erase.setToolTipText("Wymaż");
+        eraseAll.setName("SmallEraseAllButton");
+        eraseAll.setToolTipText("Wymaż wszystko");
         insertPrefab.setName("SmallPrefabButton");
         insertPrefab.setToolTipText("Dodaj element");
 
@@ -148,6 +151,7 @@ public class AppFrame extends JFrame {
 
         drawing.add(draw);
         drawing.add(erase);
+        drawing.add(eraseAll);
 
         drawing.add(insertPrefab);
         drawing.add(prefabSelector);
@@ -157,7 +161,6 @@ public class AppFrame extends JFrame {
         drawing.add(tail);
 
         add(BorderLayout.NORTH, panel);
-        //add(BorderLayout.EAST, pliki);
         add(BorderLayout.SOUTH, drawing);
         add(BorderLayout.CENTER, drawingPanel);
 
@@ -265,6 +268,24 @@ public class AppFrame extends JFrame {
                 tail.setEnabled(false);
 
                 drawingPanel.option = DrawingOption.ERASE;
+            }
+        });
+
+        eraseAll.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                insertPrefab.setSelected(false);
+                erase.setSelected(false);
+                draw.setSelected(true);
+
+                prefabSelector.setEnabled(false);
+
+                cable.setEnabled(true);
+                head.setEnabled(false);
+                tail.setEnabled(false);
+                drawingPanel.clearAllCells();
+
+
             }
         });
 

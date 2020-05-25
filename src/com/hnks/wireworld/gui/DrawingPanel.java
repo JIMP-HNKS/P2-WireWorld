@@ -59,6 +59,17 @@ public class DrawingPanel extends JPanel {
         this.prefab = prefab;
     }
 
+    public void clearAllCells(){
+        for (int x = 0; x < 80; x++) {
+            for (int y = 0; y < 50; y++) {
+                AutomatonCell cell = state.getSim().getCell( x, y );
+                state.getSim().setCell( AutomatonCell.BLANK,x, y);
+
+            }
+        } repaint();
+
+    }
+
     private class MouseHandler extends MouseAdapter {
         public void mousePressed(MouseEvent e) {
             drawing = true;
