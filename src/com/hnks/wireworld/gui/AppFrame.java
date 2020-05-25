@@ -280,10 +280,11 @@ public class AppFrame extends JFrame {
 
                 prefabSelector.setEnabled(false);
 
-                cable.setEnabled(true);
-                head.setEnabled(false);
-                tail.setEnabled(false);
+                cable.setSelected(true);
+                head.setSelected(false);
+                tail.setSelected(false);
                 drawingPanel.clearAllCells();
+                drawingPanel.option = DrawingOption.CABLE;
 
 
             }
