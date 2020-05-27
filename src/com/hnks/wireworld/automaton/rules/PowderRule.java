@@ -32,11 +32,12 @@ public class PowderRule implements IAutomatonRule {
                 target[x][y] = AutomatonCell.CABLE;
                 break;
             case HEAD:
+            case TAIL:
                 if (y == sim.getHeight() - 1) { // Oops! Time to fall into the void!
                     target[x][y] = AutomatonCell.BLANK;
                 } else if (sim.getCell(x, y + 1) == AutomatonCell.BLANK) {
                     target[x][y] = AutomatonCell.BLANK;
-                    target[x][y + 1] = AutomatonCell.HEAD;
+                    target[x][y + 1] = cell;
                 } else {
                     if (
                             sim.getCell(x - 1, y + 1) == AutomatonCell.BLANK &&
@@ -44,19 +45,19 @@ public class PowderRule implements IAutomatonRule {
                     ) {
                         int newX = x + rng.nextInt(2) * 2 - 1; // either to the left or to the right
                         target[x][y] = AutomatonCell.BLANK;
-                        target[newX][y + 1] = AutomatonCell.HEAD;
+                        target[newX][y + 1] = cell;
                     } else if (
                             sim.getCell(x - 1, y + 1) == AutomatonCell.BLANK
                     ) {
                         target[x][y] = AutomatonCell.BLANK;
-                        target[x - 1][y + 1] = AutomatonCell.HEAD;
+                        target[x - 1][y + 1] = cell;
                     } else if (
                             sim.getCell(x + 1, y + 1) == AutomatonCell.BLANK
                     ) {
                         target[x][y] = AutomatonCell.BLANK;
-                        target[x + 1][y + 1] = AutomatonCell.HEAD;
+                        target[x + 1][y + 1] = cell;
                     } else {
-                        target[x][y] = AutomatonCell.HEAD;
+                        target[x][y] = cell;
                     }
                 }
                 break;
