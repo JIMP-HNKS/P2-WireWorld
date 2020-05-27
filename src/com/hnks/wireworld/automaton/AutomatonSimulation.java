@@ -74,10 +74,6 @@ public class AutomatonSimulation {
         return count;
     }
 
-    public static AutomatonSimulation loadFromFile(String path) throws IOException {
-        // sad
-        return null;
-    }
 
     public void evolveCell(int x, int y, AutomatonCell[][] target) {
         AutomatonCell cell = getCell(x, y);
@@ -140,9 +136,5 @@ public class AutomatonSimulation {
             }
             System.out.println("\n");
         }
-    }
-
-    public void saveToFile(String path) throws IOException {
-        // sad
     }
 }
