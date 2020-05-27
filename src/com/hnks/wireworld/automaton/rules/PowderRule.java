@@ -40,6 +40,7 @@ public class PowderRule implements IAutomatonRule {
                     target[x][y + 1] = cell;
                 } else {
                     if (
+                            x > 1 && x < sim.getWidth() - 1 &&
                             sim.getCell(x - 1, y + 1) == AutomatonCell.BLANK &&
                             sim.getCell(x + 1, y + 1) == AutomatonCell.BLANK
                     ) {
@@ -47,11 +48,13 @@ public class PowderRule implements IAutomatonRule {
                         target[x][y] = AutomatonCell.BLANK;
                         target[newX][y + 1] = cell;
                     } else if (
+                            x > 1 &&
                             sim.getCell(x - 1, y + 1) == AutomatonCell.BLANK
                     ) {
                         target[x][y] = AutomatonCell.BLANK;
                         target[x - 1][y + 1] = cell;
                     } else if (
+                            x < sim.getWidth() - 1 &&
                             sim.getCell(x + 1, y + 1) == AutomatonCell.BLANK
                     ) {
                         target[x][y] = AutomatonCell.BLANK;

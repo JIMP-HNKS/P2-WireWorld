@@ -19,7 +19,10 @@ public class AutomatonSimulation {
                 cells[x][y] = AutomatonCell.BLANK;
             }
         }
+    }
 
+    public int getWidth() {
+        return width;
     }
 
     public int getHeight() {
