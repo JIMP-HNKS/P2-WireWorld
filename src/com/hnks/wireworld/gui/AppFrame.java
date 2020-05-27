@@ -129,7 +129,7 @@ public class AppFrame extends JFrame {
         JPanel drawing = new JPanel();
         JButton draw = new JButton("");
         JButton erase = new JButton("");
-        JButton eraseAll = new JButton("E");
+        JButton eraseAll = new JButton("");
         JButton insertPrefab = new JButton("");
         JButton cable = new JButton("Przewodnik");
         JButton head = new JButton("Głowa");
@@ -150,6 +150,7 @@ public class AppFrame extends JFrame {
 
         draw.setIcon(new ImageIcon(getClass().getResource("icons/draw.png")));
         erase.setIcon(new ImageIcon(getClass().getResource("icons/erase.png")));
+        eraseAll.setIcon(new ImageIcon(getClass().getResource("icons/eraseall.png")));
         insertPrefab.setIcon(new ImageIcon(getClass().getResource("icons/prefab.png")));
 
         cable.setIcon(new ImageIcon(getClass().getResource("icons/cable.png")));

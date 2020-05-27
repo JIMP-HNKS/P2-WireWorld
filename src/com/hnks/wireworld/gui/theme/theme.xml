@@ -11,7 +11,7 @@
 
     <style id="buttonStyle">
         <opaque value="TRUE"/>
-        <insets top="8" right="20" left="20" bottom="8"/>
+        <insets top="4" right="10" left="10" bottom="4"/>
         <property key="Button.iconTextGap" type="integer" value="8"/>
         <state>
             <imagePainter method="buttonBackground" path="gui/theme/ButtonNormal.png" sourceInsets="4 4 4 4"/>
@@ -35,7 +35,7 @@
     <bind style="buttonStyle" type="region" key="Button"/>
 
     <style id="buttonStyleSmall">
-        <insets top="8" right="12" left="12" bottom="8"/>
+        <insets top="4" right="8" left="8" bottom="4"/>
         <state>
             <imagePainter method="buttonBackground" path="gui/theme/ButtonNormal.png" sourceInsets="4 4 4 4"/>
             <color value="#B8B5BC" type="TEXT_FOREGROUND"/>
@@ -59,27 +59,46 @@
 
     <style id="comboBoxStyle">
         <opaque value="TRUE"/>
-        <insets top="8" right="20" left="20" bottom="8"/>
+        <insets top="4" right="16" left="10" bottom="4"/>
         <property key="ComboBox.buttonWhenNotEditable" type="boolean" value="true"/>
         <state>
-            <imagePainter method="comboBoxBackground" path="gui/theme/ButtonNormal.png" sourceInsets="4 4 4 4"/>
+            <imagePainter method="comboBoxBackground" path="gui/theme/ComboNormal.png" sourceInsets="4 4 4 13"/>
             <color value="#B8B5BC" type="TEXT_FOREGROUND"/>
         </state>
         <state value="DISABLED">
-            <imagePainter method="comboBoxBackground" path="gui/theme/ButtonDisabled.png" sourceInsets="4 4 4 4"/>
+            <imagePainter method="comboBoxBackground" path="gui/theme/ComboDisabled.png" sourceInsets="4 4 4 13"/>
             <color value="#2D2B30" type="TEXT_FOREGROUND"/>
         </state>
-        <state value="SELECTED">
-            <imagePainter method="comboBoxBackground" path="gui/theme/ButtonActive.png" sourceInsets="4 4 4 4"/>
-            <color value="#FFFFFF" type="TEXT_FOREGROUND"/>
-        </state>
         <state value="PRESSED">
-            <imagePainter method="comboBoxBackground" path="gui/theme/ButtonPressed.png" sourceInsets="4 4 4 4"/>
+            <imagePainter method="comboBoxBackground" path="gui/theme/ComboPressed.png" sourceInsets="4 4 4 13"/>
         </state>
         <state value="MOUSE_OVER">
-            <imagePainter method="comboBoxBackground" path="gui/theme/ButtonHover.png" sourceInsets="4 4 4 4"/>
+            <imagePainter method="comboBoxBackground" path="gui/theme/ComboHover.png" sourceInsets="4 4 4 13"/>
+        </state>
+    </style>
+
+    <style id="comboBoxTextStyle">
+        <opaque value="FALSE"/>
+        <state>
+            <color value="#B8B5BC" type="TEXT_FOREGROUND"/>
+        </state>
+        <state value="DISABLED">
+            <color value="#2D2B30" type="TEXT_FOREGROUND"/>
         </state>
     </style>
 
     <bind style="comboBoxStyle" type="region" key="ComboBox"/>
+    <bind style="comboBoxTextStyle" type="name" key="ComboBox.textField"/>
+
+    <style id="spinnerStyle">
+        <opaque value="FALSE"/>
+        <insets top="4" right="1" left="10" bottom="4"/>
+        <state>
+            <imagePainter method="spinnerBackground" path="gui/theme/InputNormal.png" sourceInsets="4 4 4 4"/>
+            <color value="#B8B5BC" type="TEXT_FOREGROUND"/>
+        </state>
+    </style>
+
+    <bind style="spinnerStyle" type="region" key="Spinner"/>
+    <bind style="spinnerStyle" type="name" key="Spinner.arrowButton"/>
 </synth>
