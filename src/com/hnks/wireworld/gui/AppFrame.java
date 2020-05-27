@@ -14,17 +14,23 @@ import com.hnks.wireworld.automaton.rules.WireWorldRule;
 import com.hnks.wireworld.automaton.rules.gol.MazeGoLRule;
 import com.hnks.wireworld.automaton.rules.gol.TwoByTwoGoLRule;
 import com.hnks.wireworld.automaton.rules.gol.WalledCitiesGoLRule;
+import com.hnks.wireworld.file.ConfigurationLoader;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.awt.*;
+import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
+import java.lang.Object;
 
 public class AppFrame extends JFrame {
     private IAutomatonRule[] rules = {
@@ -48,6 +54,8 @@ public class AppFrame extends JFrame {
     private Timer simTimer;
     private JSpinner simCounter;
     private DrawingPanel drawingPanel;
+
+    private ConfigurationLoader config = new ConfigurationLoader();
 
     public AppFrame() {
         super("WireWorld");
@@ -207,6 +215,7 @@ public class AppFrame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JFileChooser chooser = new JFileChooser();
+                chooser.setFileFilter(new FileNameExtensionFilter(".wwd", "wwd"));
                 int status = chooser.showOpenDialog(null);
                 if (status == JFileChooser.APPROVE_OPTION) {
                     File file = chooser.getSelectedFile();
@@ -217,6 +226,13 @@ public class AppFrame extends JFrame {
 
                     String fileName = chooser.getSelectedFile().getAbsolutePath();
                     System.out.println("Opening: " + fileName);
+                    try {
+                        config.loadFromFile(fileName, state, rules);
+                    } catch (Exception ew) {
+                        ew.printStackTrace();
+                    }
+                    
+                    repaint();
                 }
             }
         });
@@ -225,10 +241,18 @@ public class AppFrame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JFileChooser chooser = new JFileChooser();
+                //chooser.setCurrentDirectory();
+                chooser.setFileFilter(new FileNameExtensionFilter(".wwd", "wwd"));
+                File file = chooser.getSelectedFile();
+
                 int userSelection = chooser.showSaveDialog(null);
                 if (userSelection == JFileChooser.APPROVE_OPTION) {
                     File fileToSave = chooser.getSelectedFile();
-                    System.out.println("Save as file: " + fileToSave.getAbsolutePath());
+                    try {
+                        config.saveToFile(fileToSave, state);
+                    } catch (IOException ioException) {
+                        ioException.printStackTrace();
+                    }
                 }
             }
         });
