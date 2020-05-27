@@ -105,7 +105,7 @@ public class AutomatonSimulation {
     public void generateNext(IAutomatonRule rule) {
         AutomatonCell[][] target = new AutomatonCell[width][height];
 
-        for (int y = 0; y < height; y++) {
+        for (int y = height - 1; y >= 0; y--) {
             for (int x = 0; x < width; x++) {
                 rule.evolve(this, x, y, target);
             }
