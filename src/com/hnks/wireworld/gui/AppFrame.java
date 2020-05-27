@@ -39,7 +39,7 @@ public class AppFrame extends JFrame {
             new WalledCitiesGoLRule(),
             new MazeGoLRule(),
             new TwoByTwoGoLRule(),
-            new ElementaryAutomatonRule(110) hello there how are you sis sister bye sister sis SISTER
+            new ElementaryAutomatonRule(110)
     };
     private AutomatonPrefab[] prefabs = {
             new DiodeWWLDPrefab(),
