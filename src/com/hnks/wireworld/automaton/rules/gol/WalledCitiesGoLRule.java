@@ -8,7 +8,7 @@ public class WalledCitiesGoLRule extends BaseGoLRule {
 
     @Override
     public String getName() {
-        return "Walled Cities (GoL)";
+        return "Walled Cities";
     }
 
     protected boolean willSpawn(int friends) {

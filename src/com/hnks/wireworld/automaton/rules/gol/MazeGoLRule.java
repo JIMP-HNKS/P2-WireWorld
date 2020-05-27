@@ -8,7 +8,7 @@ public class MazeGoLRule extends BaseGoLRule {
 
     @Override
     public String getName() {
-        return "Maze (GoL)";
+        return "Maze";
     }
 
     protected boolean willSpawn(int friends) {

@@ -8,7 +8,7 @@ public class TwoByTwoGoLRule extends BaseGoLRule {
 
     @Override
     public String getName() {
-        return "2x2 (GoL)";
+        return "2x2";
     }
 
     protected boolean willSpawn(int friends) {

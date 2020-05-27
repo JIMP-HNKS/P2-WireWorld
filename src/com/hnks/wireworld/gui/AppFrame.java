@@ -7,6 +7,7 @@ import com.hnks.wireworld.automaton.prefabs.gol.BlinkerGoLPrefab;
 import com.hnks.wireworld.automaton.prefabs.gol.GliderGoLPrefab;
 import com.hnks.wireworld.automaton.prefabs.wwld.DiodeRevWWLDPrefab;
 import com.hnks.wireworld.automaton.prefabs.wwld.DiodeWWLDPrefab;
+import com.hnks.wireworld.automaton.rules.ElementaryAutomatonRule;
 import com.hnks.wireworld.automaton.rules.gol.BaseGoLRule;
 import com.hnks.wireworld.automaton.rules.IAutomatonRule;
 import com.hnks.wireworld.automaton.rules.WireWorldRule;
@@ -31,7 +32,8 @@ public class AppFrame extends JFrame {
             new BaseGoLRule(),
             new WalledCitiesGoLRule(),
             new MazeGoLRule(),
-            new TwoByTwoGoLRule()
+            new TwoByTwoGoLRule(),
+            new ElementaryAutomatonRule(110) hello there how are you sis sister bye sister sis SISTER
     };
     private AutomatonPrefab[] prefabs = {
             new DiodeWWLDPrefab(),
