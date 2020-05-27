@@ -22,6 +22,10 @@ public class AutomatonSimulation {
 
     }
 
+    public int getHeight() {
+        return height;
+    }
+
     public AutomatonCell getCell(int x, int y) {
         if (x >= width) x = x % width;
         if (y >= height) y = y % height;
