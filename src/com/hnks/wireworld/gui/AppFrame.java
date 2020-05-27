@@ -191,9 +191,13 @@ public class AppFrame extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 if (!isSimRunning && state.getSimCount() != 0) {
                     simTimer = new Timer();
+                    simulate.setIcon(new ImageIcon(this.getClass().getResource("icons/pause.png")));
+                    simulate.setText("Zatrzymaj");
                     simTimer.schedule(new AppSimulationTimerTask(), 0, 100);
                 } else {
                     simTimer.cancel();
+                    simulate.setIcon(new ImageIcon(this.getClass().getResource("icons/run.png")));
+                    simulate.setText("Symuluj");
                 }
                 isSimRunning = !isSimRunning;
             }
@@ -211,6 +215,11 @@ public class AppFrame extends JFrame {
             @Override
             public void stateChanged(ChangeEvent e) {
                 state.setSimCount((int)simCounter.getValue());
+                if(simCounter.getValue().equals(0)) {
+                    simulate.setText("Symuluj");
+                    simulate.setIcon(new ImageIcon(this.getClass().getResource("icons/run.png")));
+                }
+
             }
         });
 
