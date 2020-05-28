@@ -30,6 +30,10 @@ public class AutomatonPrefab {
         }
     }
 
+    public AutomatonCell[][] getCells() {
+        return cells;
+    }
+
     public String getId() {
         return id;
     }
