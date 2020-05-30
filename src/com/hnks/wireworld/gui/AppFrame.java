@@ -231,7 +231,6 @@ public class AppFrame extends JFrame {
                 int status = chooser.showOpenDialog(null);
                 if (status == JFileChooser.APPROVE_OPTION) {
                     File file = chooser.getSelectedFile();
-                    ;
                     if (file == null) {
                         return;
                     }
@@ -239,7 +238,10 @@ public class AppFrame extends JFrame {
                     String fileName = chooser.getSelectedFile().getAbsolutePath();
                     System.out.println("Opening: " + fileName);
                     try {
+                        drawingPanel.clearAllCells();
                         config.loadFromFile(fileName, state, rules);
+                        ruleSelector.setSelectedItem(state.getRule());
+
                     } catch (Exception ew) {
                         ew.printStackTrace();
                     }

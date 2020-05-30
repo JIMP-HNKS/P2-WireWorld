@@ -2,6 +2,7 @@ package com.hnks.wireworld.automaton;
 
 import com.hnks.wireworld.automaton.rules.IAutomatonRule;
 
+import java.io.File;
 import java.io.IOException;
 
 public class AutomatonSimulation {
@@ -115,6 +116,15 @@ public class AutomatonSimulation {
         }
 
         cells = target;
+    }
+
+    public void clearAllCells(){
+        for (int x = 0; x < 80; x++) {
+            for (int y = 0; y < 50; y++) {
+                setCell( AutomatonCell.BLANK,x, y);
+            }
+        }
+
     }
 
     public void debugPrint() {
