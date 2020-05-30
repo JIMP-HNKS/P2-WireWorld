@@ -81,11 +81,13 @@ public class ConfigurationLoader {
 
                 switch( cell ){
                     case HEAD:
-                        headCoords.add( x, y );
+                        headCoords.add( x );
+                        headCoords.add( y );
                         break;
 
                     case TAIL:
-                        tailCoords.add( x, y );
+                        tailCoords.add( x );
+                        tailCoords.add( y );
                         break;
                     
                     case CABLE:
