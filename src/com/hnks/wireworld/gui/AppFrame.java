@@ -255,13 +255,21 @@ public class AppFrame extends JFrame {
                 JFileChooser chooser = new JFileChooser();
                 //chooser.setCurrentDirectory();
                 chooser.setFileFilter(new FileNameExtensionFilter(".wwd", "wwd"));
-                File file = chooser.getSelectedFile();
+
+
+
+
 
                 int userSelection = chooser.showSaveDialog(null);
                 if (userSelection == JFileChooser.APPROVE_OPTION) {
-                    File fileToSave = chooser.getSelectedFile();
+
+                    String fileName = chooser.getSelectedFile().getAbsolutePath();
+                    if(!fileName.toLowerCase().endsWith(".wwd")){
+                        fileName += ".wwd";
+                    }
+                    File file = new File(fileName);
                     try {
-                        config.saveToFile(fileToSave, state);
+                        config.saveToFile(file, state);
                     } catch (IOException ioException) {
                         ioException.printStackTrace();
                     }
