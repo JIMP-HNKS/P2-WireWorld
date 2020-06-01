@@ -1,12 +1,10 @@
 package com.hnks.wireworld.gui;
 
-import com.hnks.wireworld.automaton.AutomatonCell;
 import com.hnks.wireworld.automaton.AutomatonSimulation;
 import com.hnks.wireworld.automaton.prefabs.AutomatonPrefab;
 import com.hnks.wireworld.automaton.prefabs.gol.BlinkerGoLPrefab;
 import com.hnks.wireworld.automaton.prefabs.gol.GliderGoLPrefab;
-import com.hnks.wireworld.automaton.prefabs.wwld.DiodeRevWWLDPrefab;
-import com.hnks.wireworld.automaton.prefabs.wwld.DiodeWWLDPrefab;
+import com.hnks.wireworld.automaton.prefabs.wwld.*;
 import com.hnks.wireworld.automaton.rules.ElementaryAutomatonRule;
 import com.hnks.wireworld.automaton.rules.PowderRule;
 import com.hnks.wireworld.automaton.rules.gol.BaseGoLRule;
@@ -28,10 +26,7 @@ import java.util.TimerTask;
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
-
-import java.lang.Object;
 
 public class AppFrame extends JFrame {
     private IAutomatonRule[] rules = {
@@ -46,6 +41,12 @@ public class AppFrame extends JFrame {
     private AutomatonPrefab[] prefabs = {
             new DiodeWWLDPrefab(),
             new DiodeRevWWLDPrefab(),
+            new OrWWLDPrefab(),
+            new OrRevWWLDPrefab(),
+            new XorWWLDPrefab(),
+            new XorRevWWLDPrefab(),
+            new AndWWLDPrefab(),
+            new AndRevWWLDPrefab(),
             new BlinkerGoLPrefab(),
             new GliderGoLPrefab()
     };
