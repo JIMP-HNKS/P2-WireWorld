@@ -2,6 +2,7 @@ package com.hnks.wireworld.file;
 
 import com.hnks.wireworld.automaton.AutomatonCell;
 import com.hnks.wireworld.automaton.AutomatonSimulation;
+import com.hnks.wireworld.automaton.prefabs.AutomatonPrefab;
 import com.hnks.wireworld.automaton.rules.IAutomatonRule;
 import com.hnks.wireworld.gui.AppState;
 
@@ -13,10 +14,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
-public class ConfigurationLoader {
-    public void loadFromFile( String filePath, AppState state, IAutomatonRule[] rules ) throws IOException {
-        
-
+public class ConfigurationIO {
+    public void loadFromFile(
+            String filePath, AppState state, IAutomatonRule[] rules, AutomatonPrefab[] prefabs
+    ) throws IOException {
         BufferedReader reader = new BufferedReader(
                 new FileReader( filePath )
         );
@@ -25,15 +26,14 @@ public class ConfigurationLoader {
             String line = reader.readLine();
             if ( line == null ) break;
 
-            parseScriptLine( line, state, rules );
+            parseScriptLine( line, state, rules, prefabs );
         }
 
         reader.close();
-
     }
 
 
-    private void parseScriptLine( String line, AppState state, IAutomatonRule[] rules ) {
+    private void parseScriptLine( String line, AppState state, IAutomatonRule[] rules, AutomatonPrefab[] prefabs) {
         if (
                 line.startsWith( "//" ) ||
                         line.length() == 0
@@ -66,6 +66,17 @@ public class ConfigurationLoader {
                     break;
                 }
             }
+        } else if ( args[0].equals("Prefab") && args.length == 4 ){
+            for (AutomatonPrefab prefab : prefabs) {
+                if (prefab.getID().equals(args[1])) {
+                    prefab.place(
+                            state.getSim(),
+                            Integer.parseInt(args[2]),
+                            Integer.parseInt(args[3])
+                    );
+                    break;
+                }
+            }
         }
           
     }
@@ -89,7 +100,7 @@ public class ConfigurationLoader {
                         tailCoords.add( x );
                         tailCoords.add( y );
                         break;
-                    
+
                     case CABLE:
                         cableCoords.add( x );
                         cableCoords.add( y );

@@ -34,7 +34,7 @@ public class AutomatonPrefab {
         return cells;
     }
 
-    public String getId() {
+    public String getID() {
         return id;
     }
 

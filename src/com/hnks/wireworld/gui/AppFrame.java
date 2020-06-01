@@ -13,7 +13,7 @@ import com.hnks.wireworld.automaton.rules.WireWorldRule;
 import com.hnks.wireworld.automaton.rules.gol.MazeGoLRule;
 import com.hnks.wireworld.automaton.rules.gol.TwoByTwoGoLRule;
 import com.hnks.wireworld.automaton.rules.gol.WalledCitiesGoLRule;
-import com.hnks.wireworld.file.ConfigurationLoader;
+import com.hnks.wireworld.file.ConfigurationIO;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -58,7 +58,7 @@ public class AppFrame extends JFrame {
     private JSpinner simCounter;
     private DrawingPanel drawingPanel;
 
-    private ConfigurationLoader config = new ConfigurationLoader();
+    private ConfigurationIO config = new ConfigurationIO();
 
     public AppFrame() {
         super("WireWorld");
@@ -240,7 +240,7 @@ public class AppFrame extends JFrame {
                     System.out.println("Opening: " + fileName);
                     try {
                         drawingPanel.clearAllCells();
-                        config.loadFromFile(fileName, state, rules);
+                        config.loadFromFile(fileName, state, rules, prefabs);
                         ruleSelector.setSelectedItem(state.getRule());
 
                     } catch (Exception ew) {
