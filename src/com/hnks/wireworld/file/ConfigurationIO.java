@@ -109,23 +109,27 @@ public class ConfigurationIO {
         StringBuilder test = new StringBuilder();
         test.append( "Cell Head " );
         for(int i : headCoords){
-            test.append(i + " ");
+            test.append(i);
+            test.append(" ");
         }
         test.append("\n");
 
         test.append( "Cell Tail " );
         for(int i : tailCoords){
-            test.append(i + " ");
+            test.append(i);
+            test.append(" ");
         }
         test.append("\n");
 
         test.append( "Cell Cable " );
         for(int i : cableCoords){
-            test.append(i + " ");
+            test.append(i);
+            test.append(" ");
         }
         test.append("\n");
 
-        test.append("Rule " + state.getRule().getID());
+        test.append("Rule ");
+        test.append(state.getRule().getID());
 
         FileWriter fileWriter = new FileWriter(file);
         fileWriter.append(test);

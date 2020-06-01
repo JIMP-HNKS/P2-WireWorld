@@ -13,7 +13,7 @@ public class AutomatonPrefab {
 
     private String id;
 
-    public AutomatonPrefab(String id, int width, int height, int data[][], int baseX, int baseY) {
+    public AutomatonPrefab(String id, int width, int height, int[][] data, int baseX, int baseY) {
         this.id = id;
 
         this.width = width;
