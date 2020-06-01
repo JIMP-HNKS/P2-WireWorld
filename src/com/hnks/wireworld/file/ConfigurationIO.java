@@ -90,21 +90,19 @@ public class ConfigurationIO {
             for (int y = 0; y < 50; y++) {
                 AutomatonCell cell = state.getSim().getCell( x, y );
 
-                switch( cell ){
-                    case HEAD:
-                        headCoords.add( x );
-                        headCoords.add( y );
-                        break;
-
-                    case TAIL:
-                        tailCoords.add( x );
-                        tailCoords.add( y );
-                        break;
-
-                    case CABLE:
-                        cableCoords.add( x );
-                        cableCoords.add( y );
-                        break;
+                switch (cell) {
+                    case HEAD -> {
+                        headCoords.add(x);
+                        headCoords.add(y);
+                    }
+                    case TAIL -> {
+                        tailCoords.add(x);
+                        tailCoords.add(y);
+                    }
+                    case CABLE -> {
+                        cableCoords.add(x);
+                        cableCoords.add(y);
+                    }
                 }
             }
         }
