@@ -101,4 +101,15 @@
 
     <bind style="spinnerStyle" type="region" key="Spinner"/>
     <bind style="spinnerStyle" type="name" key="Spinner.arrowButton"/>
+
+    <style id="textFieldStyle">
+        <opaque value="FALSE"/>
+        <insets top="4" right="1" left="10" bottom="4"/>
+        <state>
+            <imagePainter method="textFieldBackground" path="gui/theme/InputNormal.png" sourceInsets="4 4 4 4"/>
+            <color value="#B8B5BC" type="TEXT_FOREGROUND"/>
+        </state>
+    </style>
+
+    <bind style="textFieldStyle" type="region" key="TextField"/>
 </synth>
