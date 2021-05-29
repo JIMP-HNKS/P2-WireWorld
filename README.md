@@ -14,7 +14,7 @@ Additional implementations of:
 - 2x2
 - Rule 110
 - Powder
-- 
+
 ### Example of WireWorld
 ![GIF-WireWorld](https://user-images.githubusercontent.com/60079684/120081736-59a1e200-c0bf-11eb-8707-4c26f856cff1.gif)
 
