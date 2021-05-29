@@ -2,6 +2,9 @@
 
 ![logo](logo.png)
 
+## Technologies used
+Java, JavaFX
+
 This repository contains our implementation of the second JIMP2 project - Brian Silverman's WireWorld in Java.
 
 Additional implementations of:
